@@ -50,13 +50,14 @@ const offers = [
     href: "/90-day-breakthrough",
   },
   {
-    title: "VIP Day with Jeff",
-    price: "Starting at $15,000 (intensive + 3 months support)",
+    title: "Babu - Your CPG AI Advisor",
+    price: "Starting at $39/mo",
     pitch:
-      "A half-day intensive with Jeff at your business's highest-leverage moment. Walk out with a written strategic plan on your biggest decision - next raise, retail expansion, exit prep, category expansion, or team build - plus 3 months of direct support to execute.",
-    who: "Founders facing a high-leverage moment who want to bring Jeff in directly.",
-    cta: "Apply now",
-    href: "/vip-day-apply",
+      "Your on-demand CPG advisor. Trained on what actually works. Ask anything, anytime - from fundraising strategy to retail negotiation to formulation questions.",
+    who: "Anyone with a CPG brand, from idea to scale.",
+    cta: "Try Babu",
+    href: "https://www.askbabu.ai",
+    external: true,
   },
   {
     title: "MBA for CPG",
@@ -68,14 +69,13 @@ const offers = [
     href: "/mba-for-cpg",
   },
   {
-    title: "Babu - Your CPG AI Advisor",
-    price: "Starting at $39/mo",
+    title: "VIP Day with Jeff",
+    price: "Starting at $15,000 (intensive + 3 months support)",
     pitch:
-      "Your on-demand CPG advisor. Trained on what actually works. Ask anything, anytime - from fundraising strategy to retail negotiation to formulation questions.",
-    who: "Anyone with a CPG brand, from idea to scale.",
-    cta: "Try Babu",
-    href: "https://www.askbabu.ai",
-    external: true,
+      "A half-day intensive with Jeff at your business's highest-leverage moment. Walk out with a written strategic plan on your biggest decision - next raise, retail expansion, exit prep, category expansion, or team build - plus 3 months of direct support to execute.",
+    who: "Founders facing a high-leverage moment who want to bring Jeff in directly.",
+    cta: "Apply now",
+    href: "/vip-day-apply",
   },
 ];
 
