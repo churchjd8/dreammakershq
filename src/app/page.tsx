@@ -145,14 +145,24 @@ export default function HomePage() {
       {/* ========== 3. WHAT WE OFFER ========== */}
       <section id="programs" className="py-16 md:py-24 bg-background scroll-mt-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
-              Four ways to work with Jeff.
-            </h2>
-            <p className="mt-4 text-lg text-muted">
-              From self-paced learning to direct strategic work - whatever stage you&rsquo;re at,
-              there&rsquo;s a door in.
-            </p>
+          <div className="grid lg:grid-cols-2 gap-12 items-center mb-12">
+            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden">
+              <Image
+                src="/images/jeff-teaching.webp"
+                alt="Jeff Church strategizing at the whiteboard"
+                fill
+                className="object-cover"
+              />
+            </div>
+            <div>
+              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
+                Four ways to work with Jeff.
+              </h2>
+              <p className="mt-4 text-lg text-muted">
+                From self-paced learning to direct strategic work - whatever stage you&rsquo;re at,
+                there&rsquo;s a door in.
+              </p>
+            </div>
           </div>
 
           {/* Flagship card - full width */}
@@ -223,8 +233,8 @@ export default function HomePage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="relative aspect-[4/3] rounded-2xl overflow-hidden">
               <Image
-                src="/images/jeff-teaching.webp"
-                alt="Jeff Church strategizing at the whiteboard"
+                src="/images/jeff-suja.webp"
+                alt="Jeff Church at the Suja Juice production line"
                 fill
                 className="object-cover"
               />
