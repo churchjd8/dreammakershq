@@ -96,10 +96,10 @@ export default function HomePage() {
               </p>
               <div className="mt-8 flex flex-col sm:flex-row gap-4">
                 <Link
-                  href="/90-day-breakthrough"
+                  href="/#programs"
                   className="inline-flex items-center justify-center px-6 py-3 bg-accent hover:bg-accent-dark text-white font-semibold rounded-lg transition-colors text-base"
                 >
-                  Explore the 90-Day Breakthrough
+                  Work with Jeff
                 </Link>
                 <a
                   href="https://www.askbabu.ai"
