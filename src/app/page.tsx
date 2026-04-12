@@ -201,16 +201,26 @@ export default function HomePage() {
       {/* ========== 4. ABOUT JEFF ========== */}
       <section className="py-16 md:py-24 bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
-              35 years of CPG. Yours to leverage.
-            </h2>
-            <p className="mt-6 text-lg text-muted leading-relaxed">
-              Jeff Church founded Dream Makers because he kept seeing the same pattern: talented
-              founders making avoidable mistakes because they didn&rsquo;t have the right guidance at
-              the right time. He&rsquo;s been there - as an operator, a founder, and a fundraiser -
-              and built Dream Makers to give CPG founders the shortcut he wishes he&rsquo;d had.
-            </p>
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden">
+              <Image
+                src="/images/jeff-teaching.webp"
+                alt="Jeff Church strategizing at the whiteboard"
+                fill
+                className="object-cover"
+              />
+            </div>
+            <div>
+              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
+                35 years of CPG. Yours to leverage.
+              </h2>
+              <p className="mt-6 text-lg text-muted leading-relaxed">
+                Jeff Church founded Dream Makers because he kept seeing the same pattern: talented
+                founders making avoidable mistakes because they didn&rsquo;t have the right guidance at
+                the right time. He&rsquo;s been there - as an operator, a founder, and a fundraiser -
+                and built Dream Makers to give CPG founders the shortcut he wishes he&rsquo;d had.
+              </p>
+            </div>
           </div>
 
           {/* Credibility bar */}
