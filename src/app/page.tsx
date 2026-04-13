@@ -90,11 +90,12 @@ export default function HomePage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight">
-                The shortcut every CPG founder wishes they had.
+                For founders building brands that win.
               </h1>
               <p className="mt-6 text-lg sm:text-xl text-white/70 max-w-2xl leading-relaxed">
-                Tools, training, and direct access to Jeff Church - 8x CPG founder, co-founder of Suja
-                Juice - for founders going from idea to exit.
+                Strategic direction, operating infrastructure, and AI-powered tools for CPG founders
+                ready to break through. From Jeff Church - 8x founder, co-founder of Suja Juice,
+                $700M+ in exits.
               </p>
               <div className="mt-8 flex flex-col sm:flex-row gap-4">
                 <Link
