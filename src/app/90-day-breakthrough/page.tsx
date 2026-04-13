@@ -88,7 +88,7 @@ const membershipIncludes = [
   "Stay plugged in as long as it's valuable",
 ];
 
-const applyHref = "/90-day-breakthrough-apply";
+const applyHref = "/contact";
 const emailHref =
   "mailto:info@teamchurch.co?subject=Questions about the 90-Day Breakthrough";
 
