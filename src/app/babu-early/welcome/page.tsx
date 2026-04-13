@@ -33,7 +33,7 @@ export default function BabuWelcomePage() {
 
         <div className="mt-8">
           <a
-            href="https://www.askbabu.ai"
+            href="https://www.askbabu.ai/signup"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-accent hover:bg-accent-dark text-white font-semibold rounded-lg transition-colors text-lg"
