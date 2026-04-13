@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useState, type FormEvent } from "react";
 
 const stages = [
@@ -17,6 +18,7 @@ export function WorkshopModal({
 }: {
   buttonStyle: "hero" | "section" | "final";
 }) {
+  const router = useRouter();
   const [open, setOpen] = useState(false);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
@@ -35,7 +37,8 @@ export function WorkshopModal({
       });
 
       if (res.ok) {
-        setStatus("success");
+        router.push("/burn-rate-workshop/confirmation");
+        return;
       } else {
         setStatus("error");
       }
