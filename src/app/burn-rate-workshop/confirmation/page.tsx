@@ -82,7 +82,7 @@ export default function WorkshopConfirmationPage() {
       </section>
 
       {/* ========== STEP 2: VIP UPSELL ========== */}
-      <section className="py-16 md:py-24 bg-background">
+      <section id="vip" className="py-16 md:py-24 bg-background scroll-mt-20">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
             <span className="inline-block px-4 py-2 text-sm font-bold bg-foreground text-white rounded-full mb-6">
