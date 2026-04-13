@@ -21,15 +21,33 @@ const interests = [
 ];
 
 export default function ContactPage() {
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    // TODO: wire up to form handler / email endpoint
-    setSubmitted(true);
+    setStatus("loading");
+
+    const form = e.currentTarget;
+    const data = Object.fromEntries(new FormData(form));
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (res.ok) {
+        setStatus("success");
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
   }
 
-  if (submitted) {
+  if (status === "success") {
     return (
       <section className="py-20 md:py-32">
         <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8 text-center">
@@ -166,10 +184,16 @@ export default function ContactPage() {
 
           <button
             type="submit"
-            className="w-full px-6 py-3 bg-accent hover:bg-accent-dark text-white font-semibold rounded-lg transition-colors"
+            disabled={status === "loading"}
+            className="w-full px-6 py-3 bg-accent hover:bg-accent-dark text-white font-semibold rounded-lg transition-colors disabled:opacity-50"
           >
-            Send message
+            {status === "loading" ? "Sending..." : "Send message"}
           </button>
+          {status === "error" && (
+            <p className="mt-3 text-sm text-red-500 text-center">
+              Something went wrong. Please try again or email us directly at info@teamchurch.co.
+            </p>
+          )}
         </form>
       </div>
     </section>
