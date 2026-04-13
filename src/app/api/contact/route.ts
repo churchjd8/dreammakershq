@@ -164,8 +164,9 @@ export async function POST(request: Request) {
     return NextResponse.json({ success: true });
   } catch (err) {
     console.error("Contact form error:", err);
+    const message = err instanceof Error ? err.message : "Something went wrong";
     return NextResponse.json(
-      { error: "Something went wrong" },
+      { error: "Something went wrong", detail: message },
       { status: 500 }
     );
   }
