@@ -15,22 +15,22 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Dream Makers HQ - Break through to your next stage in CPG.",
+  title: "CPG Founders Group - The operator's playbook for CPG founders.",
   description:
-    "Tools, training, and direct access to Jeff Church - 8x CPG founder - for founders going from idea to exit.",
+    "Strategic direction, operating infrastructure, and AI-powered tools from Jeff Church - 8x CPG founder - to help you scale, raise, and exit.",
   openGraph: {
-    title: "Dream Makers HQ - Break through to your next stage in CPG.",
+    title: "CPG Founders Group - The operator's playbook for CPG founders.",
     description:
-      "Tools, training, and direct access to Jeff Church - 8x CPG founder - for founders going from idea to exit.",
+      "Strategic direction, operating infrastructure, and AI-powered tools from Jeff Church - 8x CPG founder - to help you scale, raise, and exit.",
     type: "website",
-    url: "https://dreammakershq.com",
-    siteName: "Dream Makers HQ",
+    url: "https://cpgfoundersgroup.com",
+    siteName: "CPG Founders Group",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Dream Makers HQ - Break through to your next stage in CPG.",
+    title: "CPG Founders Group - The operator's playbook for CPG founders.",
     description:
-      "Tools, training, and direct access to Jeff Church - 8x CPG founder - for founders going from idea to exit.",
+      "Strategic direction, operating infrastructure, and AI-powered tools from Jeff Church - 8x CPG founder - to help you scale, raise, and exit.",
   },
 };
 
