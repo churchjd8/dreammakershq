@@ -92,22 +92,26 @@ export default function BurnRateWorkshopPage() {
       {/* ========== HERO ========== */}
       <section className="relative bg-foreground text-white overflow-hidden">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
               <span className="inline-block px-3 py-1 text-xs font-bold uppercase tracking-wider bg-accent text-white rounded-full mb-6">
                 Free Live Workshop with Jeff Church
               </span>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight tracking-tight">
                 The CPG Profitability Workshop: Reduce Your Burn and Get to Profitability Faster
               </h1>
-              <p className="mt-6 text-lg text-white/70 max-w-2xl mx-auto leading-relaxed">
+              <p className="mt-6 text-lg text-white/70 max-w-2xl leading-relaxed">
                 Learn the exact frameworks, cost benchmarks, and trade strategies CPG founders use to
                 extend their runway and build a healthier business.
               </p>
+              <p className="mt-4 text-base text-white/50">
+                April 23rd - 90 Minutes - Live on Zoom - Free
+              </p>
+              <div className="mt-8">
+                <WorkshopModal buttonStyle="hero" />
+              </div>
             </div>
-
-            {/* Video in hero */}
-            <div className="mt-10 relative aspect-video rounded-xl overflow-hidden">
+            <div className="relative aspect-video rounded-xl overflow-hidden">
               <iframe
                 src="https://www.youtube.com/embed/oJO_KDLk6VY?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&showinfo=0&loop=1&playlist=oJO_KDLk6VY"
                 title="CPG Profitability Workshop with Jeff Church"
@@ -115,13 +119,6 @@ export default function BurnRateWorkshopPage() {
                 allowFullScreen
                 className="absolute inset-0 w-full h-full"
               />
-            </div>
-
-            <div className="mt-6 text-center">
-              <p className="text-base text-white/50 mb-4">
-                April 23rd - 90 Minutes - Live on Zoom - Free
-              </p>
-              <WorkshopModal buttonStyle="hero" />
             </div>
           </div>
         </div>
