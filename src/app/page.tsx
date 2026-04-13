@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { NewsletterForm } from "@/components/newsletter-form";
 
 const credibility = [
   { stat: "8x", label: "CPG Founder" },
@@ -320,21 +321,7 @@ export default function HomePage() {
             Weekly insights on fundraising, retail, margins, and scaling - from someone who&rsquo;s
             been there. Direct to your inbox, no fluff.
           </p>
-          <form className="mt-8 flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-            <input
-              type="email"
-              name="email"
-              required
-              placeholder="you@yourbrand.com"
-              className="flex-1 px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-accent"
-            />
-            <button
-              type="submit"
-              className="px-6 py-3 bg-accent hover:bg-accent-dark text-white font-semibold rounded-lg transition-colors"
-            >
-              Subscribe
-            </button>
-          </form>
+          <NewsletterForm />
           <p className="mt-3 text-xs text-white/40">Unsubscribe anytime. No spam, ever.</p>
         </div>
       </section>
