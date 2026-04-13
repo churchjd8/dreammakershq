@@ -319,23 +319,27 @@ export default function NinetyDayBreakthroughPage() {
               </p>
               <ul className="space-y-3 text-sm text-muted">
                 <li>
+                  🎯{" "}
                   <span className="font-semibold text-foreground">
                     Onboarding diagnostic with Jeff.
                   </span>{" "}
                   A private 1:1 session at kickoff to identify your bottleneck and map the 90 days.
                 </li>
                 <li>
+                  📞{" "}
                   <span className="font-semibold text-foreground">
                     3x/mo group sessions with Jeff
                   </span>{" "}
                   (90 minutes each). Part education, part live Q&A. Real answers to real problems.
                 </li>
                 <li>
+                  ✉️{" "}
                   <span className="font-semibold text-foreground">1:1 support as needed.</span> Some
                   things can&rsquo;t wait. You have direct email access to Jeff for time-sensitive
                   decisions.
                 </li>
                 <li>
+                  🎤{" "}
                   <span className="font-semibold text-foreground">Monthly guest speakers.</span>{" "}
                   Past and upcoming guests include founders from Poppi, Honest Tea, ZICO, Once Upon a
                   Farm, and more.
@@ -351,6 +355,7 @@ export default function NinetyDayBreakthroughPage() {
               </p>
               <ul className="space-y-3 text-sm text-muted">
                 <li>
+                  💬{" "}
                   <span className="font-semibold text-foreground">
                     Private members community (WhatsApp).
                   </span>{" "}
@@ -358,18 +363,21 @@ export default function NinetyDayBreakthroughPage() {
                   that last.
                 </li>
                 <li>
+                  ⏰{" "}
                   <span className="font-semibold text-foreground">
                     Weekly accountability calls (optional).
                   </span>{" "}
                   Monday mornings. Quick call to set your #1 priority for the week.
                 </li>
                 <li>
+                  🤝{" "}
                   <span className="font-semibold text-foreground">
                     In-person meetups at industry events.
                   </span>{" "}
                   Happy hours and community events at Expo West, BevNET, and other major trade shows.
                 </li>
                 <li>
+                  🔗{" "}
                   <span className="font-semibold text-foreground">Founder-to-founder support.</span>{" "}
                   You&rsquo;re connected to founders who understand the grind and are actively
                   helping each other.
@@ -385,20 +393,24 @@ export default function NinetyDayBreakthroughPage() {
               </p>
               <ul className="space-y-3 text-sm text-muted">
                 <li>
+                  🎓{" "}
                   <span className="font-semibold text-foreground">The MBA for CPG.</span> 15+ hours
                   of content, 450+ narrated slides, and dozens of downloadable financial models,
                   templates, and tools. Lifetime access.
                 </li>
                 <li>
+                  🤖{" "}
                   <span className="font-semibold text-foreground">Babu Pro subscription.</span>{" "}
                   Purpose-built AI advisor trained on 20+ years of CPG knowledge and 4,000+ expert
                   resources.
                 </li>
                 <li>
+                  📋{" "}
                   <span className="font-semibold text-foreground">Full template library.</span>{" "}
                   Financial model, fundraising deck, retail pitch, ops playbook, and more.
                 </li>
                 <li>
+                  📇{" "}
                   <span className="font-semibold text-foreground">
                     Curated directory of vetted service providers.
                   </span>{" "}
@@ -415,6 +427,7 @@ export default function NinetyDayBreakthroughPage() {
               </p>
               <ul className="space-y-3 text-sm text-muted">
                 <li>
+                  🏪{" "}
                   <span className="font-semibold text-foreground">
                     Retailer Pitch Slams (2x/year).
                   </span>{" "}
@@ -422,12 +435,14 @@ export default function NinetyDayBreakthroughPage() {
                   Foods, Walmart, and Ahold.
                 </li>
                 <li>
+                  💰{" "}
                   <span className="font-semibold text-foreground">
                     Investor Pitch Slams (2x/year).
                   </span>{" "}
                   Pitch real investors. Top brands compete for a $10K investment prize.
                 </li>
                 <li>
+                  🌐{" "}
                   <span className="font-semibold text-foreground">
                     One intro away from most CPG needs.
                   </span>{" "}
@@ -435,6 +450,7 @@ export default function NinetyDayBreakthroughPage() {
                   and operators.
                 </li>
                 <li>
+                  🧭{" "}
                   <span className="font-semibold text-foreground">
                     Mentorship from CPG coaches, funds, buyers, and advisors.
                   </span>{" "}
