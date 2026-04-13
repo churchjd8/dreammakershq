@@ -285,6 +285,65 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ========== WHATSAPP COMMUNITY ========== */}
+      <section className="py-16 md:py-24 bg-foreground text-white">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <span className="inline-block px-3 py-1 text-xs font-bold uppercase tracking-wider bg-accent text-white rounded-full mb-4">
+                Free Community
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
+                Join 100+ CPG founders in our free WhatsApp group.
+              </h2>
+              <p className="mt-4 text-lg text-white/70 leading-relaxed">
+                Founder-to-founder support, quick answers, and helpful CPG resources - all in one
+                place. Connect with like-minded founders, get introductions to vetted partners, and
+                share what&rsquo;s working. No spam.
+              </p>
+              <ul className="mt-6 space-y-2">
+                <li className="flex gap-2 text-white/70">
+                  <span className="text-accent font-bold">&#10003;</span>
+                  Peer-to-peer networking with active CPG founders
+                </li>
+                <li className="flex gap-2 text-white/70">
+                  <span className="text-accent font-bold">&#10003;</span>
+                  Introductions to vetted partners and service providers
+                </li>
+                <li className="flex gap-2 text-white/70">
+                  <span className="text-accent font-bold">&#10003;</span>
+                  Curated resources and rapid answers to real questions
+                </li>
+                <li className="flex gap-2 text-white/70">
+                  <span className="text-accent font-bold">&#10003;</span>
+                  Free, forever. No pitch, no upsell.
+                </li>
+              </ul>
+              <div className="mt-8">
+                <a
+                  href="https://learn.dreammakershq.com/founders-only"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center px-6 py-3 bg-accent hover:bg-accent-dark text-white font-semibold rounded-lg transition-colors text-base"
+                >
+                  Request to join &rarr;
+                </a>
+              </div>
+            </div>
+            <div className="text-center">
+              <div className="inline-flex flex-col items-center gap-4 bg-white/5 rounded-2xl p-8 sm:p-12">
+                <p className="text-6xl">💬</p>
+                <p className="text-4xl sm:text-5xl font-bold text-accent">100+</p>
+                <p className="text-lg text-white/70">CPG founders and counting</p>
+                <p className="text-sm text-white/40 max-w-xs">
+                  From pre-launch to $10M+. Every stage, every category, one community.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ========== 5. SUCCESS STORIES ========== */}
       <section className="py-16 md:py-24 bg-background">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
