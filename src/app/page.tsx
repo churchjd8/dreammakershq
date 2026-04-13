@@ -136,8 +136,9 @@ export default function HomePage() {
             For some it&rsquo;s raising the next round. For some it&rsquo;s landing retail. For some
             it&rsquo;s margins, cash, supply chain, team, or category. Whatever yours is, Jeff has
             seen it from the inside. He&rsquo;s built and sold multi-category CPG brands and spent
-            35 years in the category. In 90 days of working together, we diagnose what&rsquo;s
-            actually in your way and break through it.
+            35 years in the category. Along the way, he&rsquo;s developed a suite of tools,
+            templates, community, and frameworks that the top CPG founders use to move faster, avoid
+            expensive mistakes, and break through to their next stage.
           </p>
         </div>
       </section>
