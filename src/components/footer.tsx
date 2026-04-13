@@ -18,10 +18,11 @@ export function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-2">
-              <svg viewBox="0 0 32 32" className="h-8 w-8 flex-shrink-0" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M16 8L28 28H4Z" fill="#b45309" />
-                <line x1="16" y1="2" x2="16" y2="8" stroke="#92400e" strokeWidth="1.5" strokeLinecap="round" />
-                <path d="M16 2L23 5L16 8Z" fill="#d97706" />
+              <svg viewBox="0 0 36 32" className="h-8 w-8 flex-shrink-0" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 6L34 28H6Z" fill="#b45309" />
+                <line x1="20" y1="1" x2="20" y2="6" stroke="#92400e" strokeWidth="1.5" strokeLinecap="round" />
+                <path d="M20 1L26 3.5L20 6Z" fill="#d97706" />
+                <path d="M10 14L22 28H-2Z" fill="none" stroke="#b45309" strokeWidth="1.5" strokeLinejoin="round" />
               </svg>
               <p className="text-lg font-bold text-white">CPG Founders Group</p>
             </div>
