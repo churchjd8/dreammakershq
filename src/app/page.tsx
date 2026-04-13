@@ -88,7 +88,7 @@ export default function HomePage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight">
-                Whatever&rsquo;s between you and your next stage, we&rsquo;ll help you break through.
+                The shortcut every CPG founder wishes they had.
               </h1>
               <p className="mt-6 text-lg sm:text-xl text-white/70 max-w-2xl leading-relaxed">
                 Tools, training, and direct access to Jeff Church - 8x CPG founder, co-founder of Suja
