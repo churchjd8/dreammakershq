@@ -37,12 +37,12 @@ export default function BlogPage() {
               >
                 <div className="grid md:grid-cols-2">
                   {featuredPost.image && (
-                    <div className="relative aspect-[16/9] md:aspect-auto overflow-hidden">
+                    <div className="relative aspect-[16/9] md:aspect-auto md:min-h-[360px] overflow-hidden">
                       <Image
                         src={featuredPost.image}
                         alt={featuredPost.title}
                         fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                        className="object-cover object-top group-hover:scale-105 transition-transform duration-300"
                       />
                     </div>
                   )}
