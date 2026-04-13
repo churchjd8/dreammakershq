@@ -68,7 +68,7 @@ export function WorkshopModal({
           />
 
           {/* Modal */}
-          <div className="relative bg-white rounded-2xl shadow-xl max-w-md w-full p-6 sm:p-8 z-10">
+          <div className="relative bg-white rounded-2xl shadow-xl max-w-md w-full p-6 sm:p-8 z-10 text-foreground">
             <button
               onClick={() => setOpen(false)}
               className="absolute top-4 right-4 text-muted hover:text-foreground"

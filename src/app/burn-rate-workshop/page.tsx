@@ -113,7 +113,7 @@ export default function BurnRateWorkshopPage() {
             </div>
             <div className="relative aspect-video rounded-xl overflow-hidden">
               <iframe
-                src="https://www.youtube.com/embed/oJO_KDLk6VY?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&showinfo=0&loop=1&playlist=oJO_KDLk6VY"
+                src="https://www.youtube.com/embed/oJO_KDLk6VY?autoplay=1&mute=1&controls=1&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&loop=1&playlist=oJO_KDLk6VY"
                 title="CPG Profitability Workshop with Jeff Church"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
