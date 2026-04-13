@@ -162,7 +162,7 @@ export default function MbaForCpgPage() {
                 MBA for CPG
               </span>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight">
-                Your business school for CPG. Built by someone who actually built CPG brands.
+                Your business school for CPG.
               </h1>
               <p className="mt-6 text-lg sm:text-xl text-white/70 max-w-2xl leading-relaxed">
                 Everything you&rsquo;d learn in a $50K MBA program, built specifically for CPG
