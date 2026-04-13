@@ -20,11 +20,11 @@ async function getKajabiToken() {
 
 export async function POST(request: Request) {
   try {
-    const { name, email, stage } = await request.json();
+    const { name, email, business, stage } = await request.json();
 
-    if (!name || !email) {
+    if (!name || !email || !business) {
       return NextResponse.json(
-        { error: "Name and email are required" },
+        { error: "Name, email, and business name are required" },
         { status: 400 }
       );
     }
@@ -35,7 +35,7 @@ export async function POST(request: Request) {
       "Content-Type": "application/vnd.api+json",
     };
 
-    // Submit through the Kajabi workshop form
+    // Submit through the Kajabi workshop form (custom_2 = Business Name)
     const formRes = await fetch(
       `https://api.kajabi.com/v1/forms/${WORKSHOP_FORM_ID}/submit`,
       {
@@ -44,7 +44,7 @@ export async function POST(request: Request) {
         body: JSON.stringify({
           data: {
             type: "form_submissions",
-            attributes: { name, email },
+            attributes: { name, email, custom_2: business },
           },
         }),
       }

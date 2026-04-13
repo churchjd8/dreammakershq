@@ -154,6 +154,19 @@ export function WorkshopModal({
                   </div>
 
                   <div>
+                    <label htmlFor="ws-business" className="block text-sm font-medium mb-1">
+                      Business Name <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="ws-business"
+                      name="business"
+                      required
+                      className="w-full px-4 py-3 rounded-lg border border-border bg-white focus:outline-none focus:ring-2 focus:ring-accent"
+                    />
+                  </div>
+
+                  <div>
                     <label htmlFor="ws-stage" className="block text-sm font-medium mb-1">
                       Brand Stage <span className="text-red-500">*</span>
                     </label>
