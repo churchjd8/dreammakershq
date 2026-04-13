@@ -25,6 +25,15 @@ const companies = [
   "ERICO International",
 ];
 
+const accolades = [
+  { src: "/images/award-bevnet.png", alt: "BevNET Person of the Year - Jeff Church" },
+  { src: "/images/award-forbes.png", alt: "Forbes #2 Most Promising Companies - Suja" },
+  { src: "/images/award-inc500.png", alt: "Inc. 500 #13 Fastest Growing Company" },
+  { src: "/images/award-whole-foods.png", alt: "Whole Foods Supplier of the Year 2013" },
+  { src: "/images/book-suja-solution.png", alt: "The Suja Juice Solution - NYT Bestseller" },
+  { src: "/images/award-prevention.png", alt: "Prevention 100 Cleanest Packaged Food Awards" },
+];
+
 const competencies = [
   {
     title: "Entrepreneurial Track Record",
@@ -117,38 +126,81 @@ export default function AboutJeffPage() {
 
       {/* ========== MY STORY ========== */}
       <section className="py-16 md:py-24 bg-white">
-        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-          <span className="inline-block px-3 py-1 text-xs font-bold uppercase tracking-wider text-accent mb-4">
-            My Story
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
-            From CPA to 8x founder.
-          </h2>
-          <div className="mt-6 space-y-4 text-lg text-muted leading-relaxed">
-            <p>
-              Jeff started his career as a CPA at Ernst & Young, spent four years in audit and
-              advisory, then earned his MBA from Harvard Business School. At 38, with four young
-              children, he made the leap into entrepreneurship.
-            </p>
-            <p>
-              Over the next three decades, Jeff served as CEO for eight companies, generating nearly
-              $700 million in investor returns. His biggest chapter: co-founding Suja Juice and
-              scaling it from $600K in year one to $100M in revenue by year five. Suja sold for $300
-              million and today generates roughly $300M in annual revenue.
-            </p>
-            <p>
-              Along the way, Jeff learned what most founders learn the hard way: that the difference
-              between brands that make it and brands that don&rsquo;t almost always comes down to
-              having the right guidance at the right time. That&rsquo;s why he built the CPG Founders
-              Group - to give founders the playbook, the network, and the direct support he wishes
-              he&rsquo;d had.
-            </p>
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <span className="inline-block px-3 py-1 text-xs font-bold uppercase tracking-wider text-accent mb-4">
+                My Story
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
+                From CPA to 8x founder.
+              </h2>
+              <div className="mt-6 space-y-4 text-lg text-muted leading-relaxed">
+                <p>
+                  Jeff started his career as a CPA at Ernst & Young, spent four years in audit and
+                  advisory, then earned his MBA from Harvard Business School. At 38, with four young
+                  children, he made the leap into entrepreneurship.
+                </p>
+                <p>
+                  Over the next three decades, Jeff served as CEO for eight companies, generating
+                  nearly $700 million in investor returns. His biggest chapter: co-founding Suja
+                  Juice and scaling it from $600K in year one to $100M in revenue by year five. Suja
+                  sold for $300 million and today generates roughly $300M in annual revenue.
+                </p>
+                <p>
+                  Along the way, Jeff learned what most founders learn the hard way: that the
+                  difference between brands that make it and brands that don&rsquo;t almost always
+                  comes down to having the right guidance at the right time. That&rsquo;s why he
+                  built the CPG Founders Group - to give founders the playbook, the network, and the
+                  direct support he wishes he&rsquo;d had.
+                </p>
+              </div>
+            </div>
+            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden">
+              <Image
+                src="/images/jeff-suja-interview.png"
+                alt="Jeff Church speaking about Suja Juice"
+                fill
+                className="object-cover"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ========== ACCOLADES ========== */}
+      <section className="py-16 md:py-24 bg-background">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <span className="inline-block px-3 py-1 text-xs font-bold uppercase tracking-wider text-accent mb-4">
+              Recognition
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
+              Accolades.
+            </h2>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6">
+            {accolades.map((a) => (
+              <div
+                key={a.alt}
+                className="bg-white rounded-xl border border-border p-4 flex items-center justify-center"
+              >
+                <div className="relative w-full aspect-square">
+                  <Image
+                    src={a.src}
+                    alt={a.alt}
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* ========== PRIOR COMPANIES ========== */}
-      <section className="py-16 md:py-24 bg-background">
+      <section className="py-16 md:py-24 bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -173,8 +225,8 @@ export default function AboutJeffPage() {
             </div>
             <div className="relative aspect-[4/3] rounded-2xl overflow-hidden">
               <Image
-                src="/images/jeff-teaching.webp"
-                alt="Jeff Church strategizing at the whiteboard"
+                src="/images/jeff-coca-cola.png"
+                alt="Jeff Church at The Coca-Cola Company"
                 fill
                 className="object-cover"
               />
@@ -184,7 +236,7 @@ export default function AboutJeffPage() {
       </section>
 
       {/* ========== CORE COMPETENCIES ========== */}
-      <section className="py-16 md:py-24 bg-white">
+      <section className="py-16 md:py-24 bg-background">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto mb-12">
             <span className="inline-block px-3 py-1 text-xs font-bold uppercase tracking-wider text-accent mb-4">
@@ -196,7 +248,10 @@ export default function AboutJeffPage() {
           </div>
           <div className="grid gap-8 md:grid-cols-2">
             {competencies.map((comp) => (
-              <div key={comp.title} className="bg-card rounded-xl border border-border p-6 sm:p-8">
+              <div
+                key={comp.title}
+                className="bg-card rounded-xl border border-border p-6 sm:p-8"
+              >
                 <h3 className="text-xl font-bold mb-4">{comp.title}</h3>
                 <ul className="space-y-2">
                   {comp.items.map((item) => (
@@ -213,37 +268,93 @@ export default function AboutJeffPage() {
       </section>
 
       {/* ========== BEYOND THE BOARDROOM ========== */}
-      <section className="py-16 md:py-24 bg-background">
-        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-          <span className="inline-block px-3 py-1 text-xs font-bold uppercase tracking-wider text-accent mb-4">
-            Beyond the Boardroom
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
-            The person behind the operator.
-          </h2>
-          <div className="mt-8 grid gap-8 sm:grid-cols-3">
-            <div className="bg-card rounded-xl border border-border p-6">
-              <p className="text-2xl mb-2">👨‍👩‍👧‍👦</p>
-              <h3 className="font-bold mb-2">Family</h3>
-              <p className="text-sm text-muted">
+      <section className="py-16 md:py-24 bg-white">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mx-auto mb-12">
+            <span className="inline-block px-3 py-1 text-xs font-bold uppercase tracking-wider text-accent mb-4">
+              Beyond the Boardroom
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
+              The person behind the operator.
+            </h2>
+          </div>
+
+          {/* Family */}
+          <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
+            <div className="relative aspect-[3/1] rounded-2xl overflow-hidden">
+              <Image
+                src="/images/jeff-family.png"
+                alt="Jeff Church and family"
+                fill
+                className="object-cover"
+              />
+            </div>
+            <div>
+              <p className="text-3xl mb-3">👨‍👩‍👧‍👦</p>
+              <h3 className="text-2xl font-bold mb-3">Family</h3>
+              <p className="text-lg text-muted leading-relaxed">
                 Married 35 years to Linda. Four children. Family has been the foundation through
-                every chapter of the journey.
+                every chapter of the journey - from the early startup days to the biggest exits.
               </p>
             </div>
-            <div className="bg-card rounded-xl border border-border p-6">
-              <p className="text-2xl mb-2">🏔️</p>
-              <h3 className="font-bold mb-2">Hobbies</h3>
-              <p className="text-sm text-muted">
-                Long-distance running, mountaineering, and outdoor pursuits in epic environments
-                around the world.
+          </div>
+
+          {/* Mountaineering & Adventure */}
+          <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
+            <div className="order-2 lg:order-1">
+              <p className="text-3xl mb-3">🏔️</p>
+              <h3 className="text-2xl font-bold mb-3">Adventure</h3>
+              <p className="text-lg text-muted leading-relaxed mb-4">
+                Jeff brings the same relentless drive to the outdoors that he brings to business.
               </p>
+              <ul className="space-y-2 text-muted">
+                <li className="flex gap-2">
+                  <span className="text-accent font-bold">&#10003;</span>
+                  <span><span className="font-semibold text-foreground">5 of 7 Summits climbed</span> - Kilimanjaro, Elbrus, Vinson Massif, Kosciuszko, Aconcagua</span>
+                </li>
+                <li className="flex gap-2">
+                  <span className="text-accent font-bold">&#10003;</span>
+                  <span><span className="font-semibold text-foreground">56 marathons</span> across 4 continents</span>
+                </li>
+                <li className="flex gap-2">
+                  <span className="text-accent font-bold">&#10003;</span>
+                  <span><span className="font-semibold text-foreground">Ultramarathon winner</span> - San Diego One Day, 61 miles</span>
+                </li>
+                <li className="flex gap-2">
+                  <span className="text-accent font-bold">&#10003;</span>
+                  <span>Skiing and outdoor pursuits in epic environments around the world</span>
+                </li>
+              </ul>
             </div>
-            <div className="bg-card rounded-xl border border-border p-6">
-              <p className="text-2xl mb-2">🌍</p>
-              <h3 className="font-bold mb-2">Social Impact</h3>
-              <p className="text-sm text-muted">
+            <div className="order-1 lg:order-2 grid grid-cols-2 gap-4">
+              <div className="relative aspect-[3/4] rounded-2xl overflow-hidden">
+                <Image
+                  src="/images/jeff-summit.png"
+                  alt="Jeff Church climbing a mountain summit"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="relative aspect-[3/4] rounded-2xl overflow-hidden">
+                <Image
+                  src="/images/jeff-mountains-1.png"
+                  alt="Jeff Church mountaineering"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Social Impact */}
+          <div className="bg-background rounded-2xl border border-border p-8 md:p-12">
+            <div className="max-w-3xl mx-auto text-center">
+              <p className="text-3xl mb-3">🌍</p>
+              <h3 className="text-2xl font-bold mb-3">Social Impact</h3>
+              <p className="text-lg text-muted leading-relaxed">
                 Through Nika Water, Jeff helped bring clean water, education, and microfinance to
-                32,000+ people across Nicaragua, Kenya, Ethiopia, and Mexico.
+                32,000+ people across Nicaragua, Kenya, Ethiopia, and Mexico. Making an impact
+                beyond business has always been core to who he is.
               </p>
             </div>
           </div>
