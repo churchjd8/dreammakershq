@@ -13,6 +13,7 @@ export interface BlogPost {
   author: string;
   image?: string;
   tags: string[];
+  featured?: boolean;
   readingTime: string;
   content: string;
 }
@@ -35,6 +36,7 @@ export function getAllPosts(): BlogPost[] {
       author: data.author || "Jeff Church",
       image: data.image || null,
       tags: data.tags || [],
+      featured: data.featured || false,
       readingTime: stats.text,
       content,
     };
