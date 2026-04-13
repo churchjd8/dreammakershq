@@ -17,7 +17,16 @@ export function Footer() {
         <div className="grid gap-8 md:grid-cols-3">
           {/* Brand */}
           <div>
-            <p className="text-lg font-bold text-white">CPG Founders Group</p>
+            <div className="flex items-center gap-2">
+              <svg viewBox="0 0 32 32" className="h-8 w-8 flex-shrink-0" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 26L12 10L18 20L22 14L28 26Z" fill="#b45309" />
+                <path d="M12 10L18 20L22 14L28 26" stroke="#92400e" strokeWidth="1" strokeLinejoin="round" opacity="0.5" />
+                <path d="M4 26L12 10" stroke="#d97706" strokeWidth="1" strokeLinejoin="round" opacity="0.3" />
+                <path d="M10 18L16 6L20 14" fill="#d97706" opacity="0.6" />
+                <circle cx="16" cy="5" r="1.5" fill="#b45309" opacity="0.8" />
+              </svg>
+              <p className="text-lg font-bold text-white">CPG Founders Group</p>
+            </div>
             <p className="mt-2 text-sm text-white/60">
               Tools, training, and direct access to Jeff Church for CPG founders going from idea to exit.
             </p>

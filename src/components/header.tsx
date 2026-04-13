@@ -16,7 +16,14 @@ export function Header() {
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-border">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-          <Link href="/" className="text-xl font-bold tracking-tight text-foreground">
+          <Link href="/" className="flex items-center gap-2 text-xl font-bold tracking-tight text-foreground">
+            <svg viewBox="0 0 32 32" className="h-8 w-8 flex-shrink-0" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 26L12 10L18 20L22 14L28 26Z" fill="#b45309" />
+              <path d="M12 10L18 20L22 14L28 26" stroke="#92400e" strokeWidth="1" strokeLinejoin="round" opacity="0.5" />
+              <path d="M4 26L12 10" stroke="#d97706" strokeWidth="1" strokeLinejoin="round" opacity="0.3" />
+              <path d="M10 18L16 6L20 14" fill="#d97706" opacity="0.6" />
+              <circle cx="16" cy="5" r="1.5" fill="#b45309" opacity="0.8" />
+            </svg>
             CPG Founders Group
           </Link>
 
