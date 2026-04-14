@@ -161,7 +161,7 @@ export default function NielsenDataPage() {
             </a>
           </div>
           <p className="mt-6 text-sm text-white/40">
-            No markup &mdash; 100% goes to Nielsen. Program runs April &ndash; October 2026.
+            Program runs April &ndash; October 2026.
           </p>
         </div>
       </section>
