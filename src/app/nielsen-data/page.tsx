@@ -20,6 +20,26 @@ const addOns = [
   { label: "Hourly category assistance from Angela", price: "$150/hr" },
 ];
 
+const retailers = [
+  "Acme Fresh Market", "Ahold Delhaize", "Albertsons Companies", "Allegiance Retail Services",
+  "Alliance Retail Group", "Americas Food Basket", "B & B Foods", "Bashas", "Big Y",
+  "BJs", "Brookshire Brothers", "Brookshire", "Buehlers", "C&S Grand Union",
+  "Cardinal Health", "Cashwise", "Chedraui USA Corp", "Coborns", "Cub", "CVS",
+  "Dagostino and Gristedes", "DeMoulas", "Dierbergs", "Dollar Tree", "Duane Reade",
+  "El Rancho Supermercado", "El Super", "Fairplay Foods", "Family Dollar", "Fareway",
+  "Festival Foods", "Fiesta", "Food Lion", "Food Maxx", "Fresco y Mas", "Giant Eagle",
+  "Giant Food", "Good Food Holdings", "HAC", "Hannaford", "Harps", "Harvey's", "Heinens",
+  "Hy-Vee", "IGA Supermarket", "Indiana Grocery Group", "King Kullen", "KVAT Food City",
+  "Lowes Food", "Lucky", "Lunds & Byerlys", "Martin's", "Meijer", "Mitchell Grocery",
+  "Niemann Foods", "Northeast Grocery", "Piggly Wiggly Carolina", "Piggly Wiggly Midwest",
+  "Price Chopper", "Publix", "Raleys", "Reasors", "Rite Aid", "Roche Brothers", "Rouses",
+  "Save Mart", "Save-A-Lot", "Schnucks", "SEG", "Shoppers Food Warehouse", "ShopRite",
+  "Smart & Final", "SpartanNash", "Stater Bros", "Stop & Shop", "Target",
+  "The Fresh Market", "The Giant Company", "Tonys Finer Foods", "Tops", "UNFI",
+  "Vallarta Supermarkets", "Walgreens", "Wegmans", "Weis", "Whole Foods", "Wine.Com",
+  "Winn Dixie",
+];
+
 export default function NielsenDataPage() {
   return (
     <>
@@ -130,6 +150,29 @@ export default function NielsenDataPage() {
               <div key={item.label} className="flex items-center justify-between p-5 bg-white rounded-xl border border-border">
                 <span className="font-medium">{item.label}</span>
                 <span className="text-accent font-bold">{item.price}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Retailer coverage */}
+      <section className="py-16 md:py-24 bg-white">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
+            Retailer coverage
+          </h2>
+          <p className="mt-4 text-muted max-w-2xl">
+            Access data across {retailers.length}+ retailers spanning grocery, mass, drug, club, and natural channels.
+            If your category isn&rsquo;t listed, Jeff will work with Nielsen to place you correctly.
+          </p>
+          <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+            {retailers.map((name) => (
+              <div
+                key={name}
+                className="px-4 py-3 bg-background rounded-lg border border-border text-sm font-medium text-foreground text-center"
+              >
+                {name}
               </div>
             ))}
           </div>
