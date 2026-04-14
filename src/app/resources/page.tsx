@@ -70,8 +70,8 @@ export default function ResourcesPage() {
               Free Resources for CPG Founders
             </h1>
             <p className="mt-6 text-lg text-white/70 max-w-2xl leading-relaxed">
-              Tools, templates, video training, and white papers from Jeff Church. Everything you
-              need to launch and scale your CPG brand - no cost, no catch.
+              Free tools, templates, and training from Jeff Church to help you with everything
+              from fundraising and cash management to retail strategy and scaling operations.
             </p>
             <div className="mt-8">
               <ResourceModal
@@ -383,6 +383,26 @@ export default function ResourcesPage() {
               className="inline-flex items-center text-sm font-semibold text-accent hover:text-accent-dark transition-colors"
             >
               See all posts &rarr;
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Bottom CTA */}
+      <section className="py-16 md:py-24 bg-dark">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
+            Ready to unlock everything CPG Founders Group has to offer?
+          </h2>
+          <p className="mt-4 text-lg text-white/70">
+            Explore our programs and ways to work with Jeff.
+          </p>
+          <div className="mt-8">
+            <Link
+              href="/#programs"
+              className="inline-flex items-center justify-center px-8 py-4 bg-accent hover:bg-accent-dark text-white font-semibold rounded-lg transition-colors text-lg"
+            >
+              View programs &rarr;
             </Link>
           </div>
         </div>
