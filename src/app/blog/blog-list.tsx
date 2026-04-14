@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import type { BlogPost } from "@/lib/blog";
 
 export function BlogList({
@@ -13,20 +13,78 @@ export function BlogList({
   postsPerPage: number;
 }) {
   const [page, setPage] = useState(1);
+  const [activeTag, setActiveTag] = useState<string | null>(null);
+
+  // Collect all unique tags sorted alphabetically
+  const allTags = useMemo(() => {
+    const tagSet = new Set<string>();
+    posts.forEach((p) => p.tags.forEach((t) => tagSet.add(t)));
+    return Array.from(tagSet).sort((a, b) => a.localeCompare(b));
+  }, [posts]);
 
   const featuredPost = posts.find((p) => p.featured);
   const regularPosts = posts.filter((p) => !p.featured);
 
-  const totalPages = Math.ceil(regularPosts.length / postsPerPage);
-  const paginatedPosts = regularPosts.slice(
+  // Filter by active tag
+  const filteredPosts = activeTag
+    ? regularPosts.filter((p) => p.tags.includes(activeTag))
+    : regularPosts;
+
+  const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
+  const paginatedPosts = filteredPosts.slice(
     (page - 1) * postsPerPage,
     page * postsPerPage
   );
 
+  // Show featured post only on page 1 when no tag filter is active
+  const showFeatured = featuredPost && page === 1 && !activeTag;
+
+  // Also check if featured post matches active tag filter
+  const showFilteredFeatured =
+    featuredPost &&
+    activeTag &&
+    page === 1 &&
+    featuredPost.tags.includes(activeTag);
+
   return (
     <>
+      {/* Tag filters */}
+      {allTags.length > 0 && (
+        <div className="mb-8 flex flex-wrap gap-2">
+          <button
+            onClick={() => {
+              setActiveTag(null);
+              setPage(1);
+            }}
+            className={`px-3 py-1.5 text-sm font-medium rounded-full transition-colors ${
+              activeTag === null
+                ? "bg-accent text-white"
+                : "border border-border text-muted hover:bg-card hover:text-foreground"
+            }`}
+          >
+            All
+          </button>
+          {allTags.map((tag) => (
+            <button
+              key={tag}
+              onClick={() => {
+                setActiveTag(tag === activeTag ? null : tag);
+                setPage(1);
+              }}
+              className={`px-3 py-1.5 text-sm font-medium rounded-full transition-colors capitalize ${
+                tag === activeTag
+                  ? "bg-accent text-white"
+                  : "border border-border text-muted hover:bg-card hover:text-foreground"
+              }`}
+            >
+              {tag}
+            </button>
+          ))}
+        </div>
+      )}
+
       {/* Featured post */}
-      {featuredPost && page === 1 && (
+      {(showFeatured || showFilteredFeatured) && featuredPost && (
         <Link
           href={`/blog/${featuredPost.slug}`}
           className="group block rounded-xl border border-accent/30 ring-2 ring-accent/20 bg-card overflow-hidden hover:shadow-lg transition-shadow mb-10"
@@ -81,7 +139,7 @@ export function BlogList({
       )}
 
       {/* Regular posts grid */}
-      {paginatedPosts.length > 0 && (
+      {paginatedPosts.length > 0 ? (
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {paginatedPosts.map((post) => (
             <Link
@@ -133,6 +191,21 @@ export function BlogList({
             </Link>
           ))}
         </div>
+      ) : (
+        activeTag && (
+          <p className="text-muted text-center py-12">
+            No posts found for &ldquo;{activeTag}&rdquo;.{" "}
+            <button
+              onClick={() => {
+                setActiveTag(null);
+                setPage(1);
+              }}
+              className="text-accent hover:underline"
+            >
+              View all posts
+            </button>
+          </p>
+        )
       )}
 
       {/* Pagination */}

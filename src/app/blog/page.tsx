@@ -25,7 +25,7 @@ export default function BlogPage() {
         {posts.length === 0 ? (
           <p className="text-muted">No posts yet. Check back soon.</p>
         ) : (
-          <BlogList posts={posts} postsPerPage={6} />
+          <BlogList posts={posts} postsPerPage={9} />
         )}
       </div>
     </section>
