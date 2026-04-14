@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getAllSlugs, getPostBySlug } from "@/lib/blog";
 import { BlogContent } from "./blog-content";
+import { BlogNewsletterForm } from "@/components/blog-newsletter-form";
 
 export function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }));
@@ -105,12 +106,7 @@ export default async function BlogPostPage({
           <p className="mt-2 text-muted">
             Get Jeff&rsquo;s take on what&rsquo;s actually working in CPG. Direct to your inbox.
           </p>
-          <Link
-            href="/#email-signup"
-            className="inline-flex items-center mt-4 px-6 py-3 bg-accent hover:bg-accent-dark text-white font-semibold rounded-lg transition-colors"
-          >
-            Subscribe to the newsletter
-          </Link>
+          <BlogNewsletterForm />
         </div>
       </div>
     </article>

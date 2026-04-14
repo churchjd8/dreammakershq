@@ -21,7 +21,7 @@ async function getAccessToken() {
 
 export async function POST(request: Request) {
   try {
-    const { email } = await request.json();
+    const { email, first_name, last_name } = await request.json();
 
     if (!email || typeof email !== "string") {
       return NextResponse.json(
@@ -43,6 +43,8 @@ export async function POST(request: Request) {
           type: "contacts",
           attributes: {
             email,
+            first_name: first_name || undefined,
+            last_name: last_name || undefined,
             subscribed: true,
           },
           relationships: {
