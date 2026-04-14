@@ -16,6 +16,10 @@ Source material for blog posts, LinkedIn content, emails, and other content crea
 ### White Papers
 - **[white-papers.md](white-papers.md)** - Both white papers: "Fatal Flaws for Early-Stage Emerging CPG Brands" (18 flaws) and "Lessons Learned: Growing a Brand to $100M in 5 Years" (Suja).
 
+### Training Transcripts
+- **[transcript-babu-and-brokers-2026-04-09.md](transcript-babu-and-brokers-2026-04-09.md)** - Discussion on askBabu.ai and broker strategy. Broker evaluation, demo costs, pricing strategy, FDA/FTC risks, contract best practices, askBabu tools overview.
+- **[transcript-amazon-vs-meta-2026-03-27.md](transcript-amazon-vs-meta-2026-03-27.md)** - Founder meeting on Amazon vs Meta strategy. Repeat rates, mix pack strategy, Meta-to-Amazon halo effect, email/SMS flows, specific founder advice.
+
 ## How to Use
 
 - Blog agent: Read relevant files for topic ideas, stories, quotes, and data points
