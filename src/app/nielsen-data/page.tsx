@@ -137,21 +137,27 @@ export default function NielsenDataPage() {
       </section>
 
       {/* Bottom CTA */}
-      <section className="py-16 md:py-24 bg-dark">
+      <section className="py-16 md:py-24 bg-foreground text-white">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
             Spots are limited to 10 brands
           </h2>
           <p className="mt-4 text-lg text-white/70">
             This is exceptional value for real-time visibility into the competitive landscape,
             your retail performance, and how your brand stacks up.
           </p>
-          <div className="mt-8">
+          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
               href="https://buy.stripe.com/3cI14ndnyeHY8kyfexbbG0c"
               className="inline-flex items-center justify-center px-8 py-4 bg-accent hover:bg-accent-dark text-white font-semibold rounded-lg transition-colors text-lg"
             >
               Reserve your spot &mdash; $1,500 &rarr;
+            </a>
+            <a
+              href="mailto:info@dreammakershq.com"
+              className="inline-flex items-center justify-center px-8 py-4 border border-white/30 hover:border-white/60 text-white font-semibold rounded-lg transition-colors text-lg"
+            >
+              Questions? Email us
             </a>
           </div>
           <p className="mt-6 text-sm text-white/40">
