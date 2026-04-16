@@ -1,16 +1,14 @@
 import { NextResponse } from "next/server";
 
-const RESOURCES_FORM_ID = "2149549966";
-
-const TAG_IDS: Record<string, string> = {
-  "All Free Resources Bundle": "2150128581",
-  "Fundraising Masterclass Replay (3 Hours)": "2150128582",
-  "CPG Chart of Accounts": "2150128583",
-  "Capital Raise & Runway Calculator": "2150128584",
-  "Unit Pricing & Break-Even Model": "2150128587",
-  "Suja Lessons Learned (white paper)": "2150128588",
-  "CPG Fatal Flaws (white paper)": "2150128589",
-  "CPG Playbook Video Replay": "2150128590",
+const FORM_IDS: Record<string, string> = {
+  "All Free Resources Bundle": "2149549983",
+  "Fundraising Masterclass Replay (3 Hours)": "2149549980",
+  "CPG Chart of Accounts": "2149549973",
+  "Capital Raise & Runway Calculator": "2149549975",
+  "Unit Pricing & Break-Even Model": "2149549976",
+  "Suja Lessons Learned (white paper)": "2149549977",
+  "CPG Fatal Flaws (white paper)": "2149549979",
+  "CPG Playbook Video Replay": "2149549982",
 };
 
 async function getKajabiToken() {
@@ -45,7 +43,16 @@ export async function POST(request: Request) {
       );
     }
 
-    console.log(`Resource signup: ${fullName} <${email}> requesting "${resource}"`);
+    const formId = FORM_IDS[resource];
+    if (!formId) {
+      console.error(`Resource signup: no form ID for "${resource}"`);
+      return NextResponse.json(
+        { error: "Unknown resource" },
+        { status: 400 }
+      );
+    }
+
+    console.log(`Resource signup: ${fullName} <${email}> requesting "${resource}" (form ${formId})`);
 
     const accessToken = await getKajabiToken();
     const headers = {
@@ -53,9 +60,39 @@ export async function POST(request: Request) {
       "Content-Type": "application/vnd.api+json",
     };
 
-    let contactId: string | null = null;
+    // Submit through the resource-specific form — Kajabi handles the tag
+    // via form automation. Works for new, existing, and ghost contacts.
+    const formRes = await fetch(
+      `https://api.kajabi.com/v1/forms/${formId}/submit`,
+      {
+        method: "POST",
+        headers,
+        body: JSON.stringify({
+          data: {
+            type: "form_submissions",
+            attributes: {
+              name: first,
+              email,
+              custom_1: last,
+              custom_3: stage || "",
+            },
+          },
+        }),
+      }
+    );
 
-    // Step 1: Try creating contact directly — gives us the ID for tagging
+    if (!formRes.ok) {
+      const errText = await formRes.text();
+      console.error(`Resource signup: form submit failed (${formRes.status}): ${errText.slice(0, 200)}`);
+      return NextResponse.json(
+        { error: "Could not register contact" },
+        { status: 500 }
+      );
+    }
+
+    console.log(`Resource signup: submitted to form ${formId} for ${email}`);
+
+    // Best-effort: try to set custom_4 (challenge) and add a note via contacts API
     const contactRes = await fetch("https://api.kajabi.com/v1/contacts", {
       method: "POST",
       headers,
@@ -79,123 +116,45 @@ export async function POST(request: Request) {
       }),
     });
 
+    let contactId: string | null = null;
+
     if (contactRes.ok) {
       const contactData = await contactRes.json();
       contactId = contactData.data.id;
-      console.log(`Resource signup: created contact ${contactId}`);
     } else {
-      // Contact exists (or ghost) — submit through form as fallback
-      console.log(`Resource signup: contact create failed, using form submit`);
-      const formRes = await fetch(
-        `https://api.kajabi.com/v1/forms/${RESOURCES_FORM_ID}/submit`,
-        {
-          method: "POST",
-          headers,
-          body: JSON.stringify({
-            data: {
-              type: "form_submissions",
-              attributes: {
-                name: first,
-                email,
-                custom_1: last,
-                custom_3: stage || "",
-              },
-            },
-          }),
-        }
+      // Contact already exists — search for it to add note and update fields
+      const searchRes = await fetch(
+        `https://api.kajabi.com/v1/contacts?filter[email_contains]=${encodeURIComponent(email)}`,
+        { headers }
       );
-
-      if (!formRes.ok) {
-        console.error(`Resource signup: form submit also failed (${formRes.status})`);
-        return NextResponse.json(
-          { error: "Could not register contact" },
-          { status: 500 }
+      if (searchRes.ok) {
+        const searchData = await searchRes.json();
+        const match = searchData.data?.find(
+          (c: { attributes: { email: string } }) =>
+            c.attributes.email.toLowerCase() === email.toLowerCase()
         );
-      }
-
-      // Try to find the existing contact by email search (with retry for indexing delay)
-      for (let attempt = 0; attempt < 3; attempt++) {
-        if (attempt > 0) {
-          await new Promise((r) => setTimeout(r, 3000));
-          console.log(`Resource signup: retry ${attempt} searching for ${email}`);
-        }
-        const searchRes = await fetch(
-          `https://api.kajabi.com/v1/contacts?filter[email_contains]=${encodeURIComponent(email)}`,
-          { headers }
-        );
-        if (searchRes.ok) {
-          const searchData = await searchRes.json();
-          const match = searchData.data?.find(
-            (c: { attributes: { email: string } }) =>
-              c.attributes.email.toLowerCase() === email.toLowerCase()
-          );
-          if (match) {
-            contactId = match.id;
-            console.log(`Resource signup: found existing contact ${contactId}`);
-
-            // Update the existing contact's custom fields
-            await fetch(`https://api.kajabi.com/v1/contacts/${contactId}`, {
-              method: "PATCH",
-              headers,
-              body: JSON.stringify({
-                data: {
-                  type: "contacts",
-                  id: contactId,
-                  attributes: {
-                    custom_3: stage || "",
-                    custom_4: challenge || "",
-                  },
-                },
-              }),
-            });
-            break;
-          }
-        }
-      }
-    }
-
-    // Step 2: Submit through form for all contacts (triggers Kajabi automations)
-    if (contactId) {
-      // Only submit form if we created the contact (didn't already submit above)
-      const alreadySubmittedForm = !contactRes.ok;
-      if (!alreadySubmittedForm) {
-        await fetch(
-          `https://api.kajabi.com/v1/forms/${RESOURCES_FORM_ID}/submit`,
-          {
-            method: "POST",
+        if (match) {
+          contactId = match.id;
+          await fetch(`https://api.kajabi.com/v1/contacts/${contactId}`, {
+            method: "PATCH",
             headers,
             body: JSON.stringify({
               data: {
-                type: "form_submissions",
+                type: "contacts",
+                id: contactId,
                 attributes: {
-                  name: first,
-                  email,
-                  custom_1: last,
                   custom_3: stage || "",
+                  custom_4: challenge || "",
                 },
               },
             }),
-          }
-        );
+          });
+        }
       }
     }
 
-    // Step 3: Apply tag and note if we found the contact
+    // Add note if we have the contact ID
     if (contactId) {
-      const tagId = TAG_IDS[resource];
-      if (tagId) {
-        await fetch(
-          `https://api.kajabi.com/v1/contacts/${contactId}/relationships/tags`,
-          {
-            method: "POST",
-            headers,
-            body: JSON.stringify({
-              data: [{ type: "contact_tags", id: tagId }],
-            }),
-          }
-        );
-      }
-
       await fetch("https://api.kajabi.com/v1/contact_notes", {
         method: "POST",
         headers,
@@ -213,12 +172,8 @@ export async function POST(request: Request) {
           },
         }),
       });
-    } else {
-      console.log(`Resource signup: could not find contact ID for ${email} — form was submitted but tag/note skipped`);
     }
 
-    // Always return success — the form submission went through even if we
-    // couldn't find the contact ID for tagging
     return NextResponse.json({ success: true });
   } catch (err) {
     console.error("Resource signup error:", err);
