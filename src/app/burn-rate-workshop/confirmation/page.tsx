@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 const calendarLink =
   "https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=Zmt1ajI0OTFoZXBmNTFpcWhla2hscjI4YTAgam9zaHVhQHRlYW1jaHVyY2guY28&tmsrc=joshua%40teamchurch.co";
 
-const vipCheckoutLink = "https://learn.dreammakershq.com/offers/o26eJuGF";
+const vipCheckoutLink = "https://learn.cpgfoundersgroup.com/offers/o26eJuGF";
 
 export default function WorkshopConfirmationPage() {
   return (

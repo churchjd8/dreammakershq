@@ -52,10 +52,10 @@ export function Footer() {
           <div>
             <p className="text-sm font-semibold text-white mb-3">Get in Touch</p>
             <a
-              href="mailto:info@dreammakershq.com"
+              href="mailto:info@cpgfoundersgroup.com"
               className="text-sm text-white/60 hover:text-white transition-colors"
             >
-              info@dreammakershq.com
+              info@cpgfoundersgroup.com
             </a>
             <div className="mt-4 flex gap-4">
               {/* Social placeholders */}
