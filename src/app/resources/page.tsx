@@ -40,14 +40,14 @@ const whitePapers = [
     title: "Suja Lessons Learned",
     description:
       "The key lessons from building Suja Juice from $600K to $100M in revenue. What worked, what didn't, and what Jeff would do differently.",
-    tag: "Suja Lessons Learned White Paper",
+    tag: "Suja Lessons Learned (white paper)",
   },
   {
     icon: "⚠️",
     title: "CPG Fatal Flaws",
     description:
       "The most common mistakes that kill CPG brands before they have a chance to succeed. Learn from other founders' fatal flaws so you don't repeat them.",
-    tag: "CPG Fatal Flaws White Paper",
+    tag: "CPG Fatal Flaws (white paper)",
   },
 ];
 

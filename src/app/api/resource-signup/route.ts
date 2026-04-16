@@ -1,5 +1,16 @@
 import { NextResponse } from "next/server";
 
+const TAG_IDS: Record<string, string> = {
+  "All Free Resources Bundle": "2150128581",
+  "Fundraising Masterclass Replay (3 Hours)": "2150128582",
+  "CPG Chart of Accounts": "2150128583",
+  "Capital Raise & Runway Calculator": "2150128584",
+  "Unit Pricing & Break-Even Model": "2150128587",
+  "Suja Lessons Learned (white paper)": "2150128588",
+  "CPG Fatal Flaws (white paper)": "2150128589",
+  "CPG Playbook Video Replay": "2150128590",
+};
+
 async function getKajabiToken() {
   const res = await fetch("https://api.kajabi.com/v1/oauth/token", {
     method: "POST",
@@ -74,31 +85,19 @@ export async function POST(request: Request) {
     }
 
     if (contactId) {
-      // Look up the Kajabi tag by resource name and apply it
-      const tagSearchRes = await fetch(
-        `https://api.kajabi.com/v1/contact_tags?filter[site_id]=${process.env.KAJABI_SITE_ID!}&filter[name_cont]=${encodeURIComponent(resource)}`,
-        { headers }
-      );
-
-      if (tagSearchRes.ok) {
-        const tagData = await tagSearchRes.json();
-        const matchingTag = tagData.data?.find(
-          (t: { attributes: { name: string } }) =>
-            t.attributes.name === resource
+      // Apply the matching Kajabi tag
+      const tagId = TAG_IDS[resource];
+      if (tagId) {
+        await fetch(
+          `https://api.kajabi.com/v1/contacts/${contactId}/relationships/tags`,
+          {
+            method: "POST",
+            headers,
+            body: JSON.stringify({
+              data: [{ type: "contact_tags", id: tagId }],
+            }),
+          }
         );
-
-        if (matchingTag) {
-          await fetch(
-            `https://api.kajabi.com/v1/contacts/${contactId}/relationships/tags`,
-            {
-              method: "POST",
-              headers,
-              body: JSON.stringify({
-                data: [{ type: "contact_tags", id: matchingTag.id }],
-              }),
-            }
-          );
-        }
       }
 
       // Add a note with resource request details
