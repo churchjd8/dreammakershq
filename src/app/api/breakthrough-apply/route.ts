@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 
+const BREAKTHROUGH_FORM_ID = "2149550470";
+
 async function getKajabiToken() {
   const res = await fetch("https://api.kajabi.com/v1/oauth/token", {
     method: "POST",
@@ -17,7 +19,8 @@ async function getKajabiToken() {
 }
 
 async function sendNotificationEmail(fields: {
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
   business: string;
   website?: string;
@@ -36,10 +39,10 @@ async function sendNotificationEmail(fields: {
       from: "CPG Founders Group <onboarding@resend.dev>",
       to: process.env.CONTACT_FORM_NOTIFY_EMAIL!,
       reply_to: fields.email,
-      subject: `🔥 90-Day Breakthrough Application: ${fields.name} (${fields.business})`,
+      subject: `🔥 90-Day Breakthrough Application: ${fields.firstName} ${fields.lastName} (${fields.business})`,
       html: `
         <h2>New 90-Day Breakthrough Application</h2>
-        <p><strong>Name:</strong> ${fields.name}</p>
+        <p><strong>Name:</strong> ${fields.firstName} ${fields.lastName}</p>
         <p><strong>Email:</strong> ${fields.email}</p>
         <p><strong>Business:</strong> ${fields.business}</p>
         ${fields.website ? `<p><strong>Website:</strong> ${fields.website}</p>` : ""}
@@ -65,13 +68,13 @@ async function sendNotificationEmail(fields: {
 
 export async function POST(request: Request) {
   try {
-    const { name, email, business, website, revenue, challenge, breakthrough, referral } =
+    const { firstName, lastName, email, business, website, revenue, challenge, breakthrough, referral } =
       await request.json();
 
-    if (!name || !email || !business || !revenue || !challenge || !breakthrough) {
+    if (!firstName || !lastName || !email || !business || !revenue || !challenge || !breakthrough) {
       return NextResponse.json(
         { error: "All required fields must be filled out" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -81,112 +84,51 @@ export async function POST(request: Request) {
       "Content-Type": "application/vnd.api+json",
     };
 
-    // 1. Create contact in Kajabi
-    const contactRes = await fetch("https://api.kajabi.com/v1/contacts", {
-      method: "POST",
-      headers,
-      body: JSON.stringify({
-        data: {
-          type: "contacts",
-          attributes: { name, email, subscribed: true },
-          relationships: {
-            site: {
-              data: { type: "sites", id: process.env.KAJABI_SITE_ID! },
-            },
-          },
-        },
-      }),
-    });
-
-    let contactId: string | null = null;
-
-    if (contactRes.ok) {
-      const contactData = await contactRes.json();
-      contactId = contactData.data.id;
-    } else {
-      // Contact may already exist - search for them
-      const searchRes = await fetch(
-        `https://api.kajabi.com/v1/contacts?filter[email_contains]=${encodeURIComponent(email)}`,
-        { headers }
-      );
-      if (searchRes.ok) {
-        const searchData = await searchRes.json();
-        const match = searchData.data?.find(
-          (c: { attributes: { email: string } }) =>
-            c.attributes.email.toLowerCase() === email.toLowerCase()
-        );
-        if (match) {
-          contactId = match.id;
-        }
-      }
-    }
-
-    if (contactId) {
-      // 2. Add application details as a contact note
-      const noteBody = [
-        `90-Day Breakthrough Application`,
-        ``,
-        `Business: ${business}`,
-        website ? `Website: ${website}` : null,
-        `Revenue: ${revenue}`,
-        ``,
-        `Biggest challenge:`,
-        challenge,
-        ``,
-        `What a breakthrough looks like:`,
-        breakthrough,
-        referral ? `\nReferral source: ${referral}` : null,
-      ]
-        .filter(Boolean)
-        .join("\n");
-
-      await fetch("https://api.kajabi.com/v1/contact_notes", {
+    // Submit through the Kajabi "90-Day Breakthrough Application" form.
+    // Kajabi handles contact creation, tagging, and automations.
+    // Field mapping (matches form field order in Kajabi):
+    //   name      → First Name
+    //   email     → Email
+    //   custom_1  → Last Name
+    //   custom_2  → Business Name
+    //   custom_3  → Business website (if applicable)
+    //   custom_4  → Revenue (radio buttons)
+    //   custom_5  → Biggest challenge
+    //   custom_6  → Breakthrough in 90 days
+    //   custom_7  → How did you hear about Jeff
+    const formRes = await fetch(
+      `https://api.kajabi.com/v1/forms/${BREAKTHROUGH_FORM_ID}/submit`,
+      {
         method: "POST",
         headers,
         body: JSON.stringify({
           data: {
-            type: "contact_notes",
-            attributes: { body: noteBody },
-            relationships: {
-              contact: {
-                data: { type: "contacts", id: contactId },
-              },
+            type: "form_submissions",
+            attributes: {
+              name: firstName,
+              email,
+              custom_1: lastName,
+              custom_2: business,
+              custom_3: website || "",
+              custom_4: revenue,
+              custom_5: challenge,
+              custom_6: breakthrough,
+              custom_7: referral || "",
             },
           },
         }),
-      });
+      },
+    );
 
-      // 3. Apply "90-Day Breakthrough Application" tag
-      const tagSearchRes = await fetch(
-        `https://api.kajabi.com/v1/contact_tags?filter[site_id]=${process.env.KAJABI_SITE_ID!}&filter[name_cont]=${encodeURIComponent("90-Day Breakthrough Application")}`,
-        { headers }
-      );
-
-      if (tagSearchRes.ok) {
-        const tagData = await tagSearchRes.json();
-        const matchingTag = tagData.data?.find(
-          (t: { attributes: { name: string } }) =>
-            t.attributes.name === "90-Day Breakthrough Application"
-        );
-
-        if (matchingTag) {
-          await fetch(
-            `https://api.kajabi.com/v1/contacts/${contactId}/relationships/tags`,
-            {
-              method: "POST",
-              headers,
-              body: JSON.stringify({
-                data: [{ type: "contact_tags", id: matchingTag.id }],
-              }),
-            }
-          );
-        }
-      }
+    if (!formRes.ok) {
+      const errText = await formRes.text();
+      console.error(`Kajabi form submit failed (${formRes.status}): ${errText.slice(0, 300)}`);
     }
 
-    // 4. Send notification email to team
+    // Also send notification email to team
     await sendNotificationEmail({
-      name,
+      firstName,
+      lastName,
       email,
       business,
       website,
@@ -202,7 +144,7 @@ export async function POST(request: Request) {
     const message = err instanceof Error ? err.message : "Something went wrong";
     return NextResponse.json(
       { error: "Something went wrong", detail: message },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

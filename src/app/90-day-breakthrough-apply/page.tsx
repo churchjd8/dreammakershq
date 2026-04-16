@@ -71,30 +71,43 @@ export default function BreakthroughApplyPage() {
           <form onSubmit={handleSubmit} className="space-y-5">
             <div className="grid sm:grid-cols-2 gap-5">
               <div>
-                <label htmlFor="ba-name" className="block text-sm font-medium mb-1">
-                  Name <span className="text-red-500">*</span>
+                <label htmlFor="ba-firstName" className="block text-sm font-medium mb-1">
+                  First name <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
-                  id="ba-name"
-                  name="name"
+                  id="ba-firstName"
+                  name="firstName"
                   required
                   className="w-full px-4 py-3 rounded-lg border border-border bg-white focus:outline-none focus:ring-2 focus:ring-accent"
                 />
               </div>
 
               <div>
-                <label htmlFor="ba-email" className="block text-sm font-medium mb-1">
-                  Email <span className="text-red-500">*</span>
+                <label htmlFor="ba-lastName" className="block text-sm font-medium mb-1">
+                  Last name <span className="text-red-500">*</span>
                 </label>
                 <input
-                  type="email"
-                  id="ba-email"
-                  name="email"
+                  type="text"
+                  id="ba-lastName"
+                  name="lastName"
                   required
                   className="w-full px-4 py-3 rounded-lg border border-border bg-white focus:outline-none focus:ring-2 focus:ring-accent"
                 />
               </div>
+            </div>
+
+            <div>
+              <label htmlFor="ba-email" className="block text-sm font-medium mb-1">
+                Email <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="email"
+                id="ba-email"
+                name="email"
+                required
+                className="w-full px-4 py-3 rounded-lg border border-border bg-white focus:outline-none focus:ring-2 focus:ring-accent"
+              />
             </div>
 
             <div className="grid sm:grid-cols-2 gap-5">
@@ -113,7 +126,7 @@ export default function BreakthroughApplyPage() {
 
               <div>
                 <label htmlFor="ba-website" className="block text-sm font-medium mb-1">
-                  Website
+                  Business website (if applicable)
                 </label>
                 <input
                   type="url"
@@ -126,25 +139,26 @@ export default function BreakthroughApplyPage() {
             </div>
 
             <div>
-              <label htmlFor="ba-revenue" className="block text-sm font-medium mb-1">
-                Current revenue <span className="text-red-500">*</span>
-              </label>
-              <select
-                id="ba-revenue"
-                name="revenue"
-                required
-                defaultValue=""
-                className="w-full px-4 py-3 rounded-lg border border-border bg-white focus:outline-none focus:ring-2 focus:ring-accent"
-              >
-                <option value="" disabled>
-                  Select your revenue stage
-                </option>
-                {revenueStages.map((s) => (
-                  <option key={s} value={s}>
-                    {s}
-                  </option>
-                ))}
-              </select>
+              <fieldset>
+                <legend className="block text-sm font-medium mb-2">
+                  What is your revenue (Trailing Twelve Months or expected this year)?{" "}
+                  <span className="text-red-500">*</span>
+                </legend>
+                <div className="space-y-2">
+                  {revenueStages.map((s) => (
+                    <label key={s} className="flex items-center gap-3 cursor-pointer">
+                      <input
+                        type="radio"
+                        name="revenue"
+                        value={s}
+                        required
+                        className="h-4 w-4 text-accent border-border focus:ring-accent"
+                      />
+                      <span className="text-sm">{s}</span>
+                    </label>
+                  ))}
+                </div>
+              </fieldset>
             </div>
 
             <div>
