@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 
+const NEWSLETTER_FORM_ID = "2149549985";
+
 async function getAccessToken() {
   const res = await fetch("https://api.kajabi.com/v1/oauth/token", {
     method: "POST",
@@ -11,10 +13,7 @@ async function getAccessToken() {
     }),
   });
 
-  if (!res.ok) {
-    throw new Error("Failed to authenticate with Kajabi");
-  }
-
+  if (!res.ok) throw new Error("Failed to authenticate with Kajabi");
   const data = await res.json();
   return data.access_token as string;
 }
@@ -31,47 +30,41 @@ export async function POST(request: Request) {
     }
 
     const accessToken = await getAccessToken();
+    const headers = {
+      Authorization: `Bearer ${accessToken}`,
+      "Content-Type": "application/vnd.api+json",
+    };
 
-    const res = await fetch("https://api.kajabi.com/v1/contacts", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-        "Content-Type": "application/vnd.api+json",
-      },
-      body: JSON.stringify({
-        data: {
-          type: "contacts",
-          attributes: {
-            email,
-            first_name: first_name || undefined,
-            last_name: last_name || undefined,
-            subscribed: true,
-          },
-          relationships: {
-            site: {
-              data: {
-                type: "sites",
-                id: process.env.KAJABI_SITE_ID!,
-              },
+    // Submit through the General Newsletter Sub form — Kajabi applies the
+    // tag via form automation. Works for new, existing, and ghost contacts.
+    const formRes = await fetch(
+      `https://api.kajabi.com/v1/forms/${NEWSLETTER_FORM_ID}/submit`,
+      {
+        method: "POST",
+        headers,
+        body: JSON.stringify({
+          data: {
+            type: "form_submissions",
+            attributes: {
+              name: first_name || "",
+              email,
+              custom_1: last_name || "",
             },
           },
-        },
-      }),
-    });
-
-    if (!res.ok) {
-      const error = await res.json();
-      // Kajabi returns 422 if contact already exists
-      if (res.status === 422) {
-        return NextResponse.json({ success: true, existing: true });
+        }),
       }
-      console.error("Kajabi API error:", error);
+    );
+
+    if (!formRes.ok) {
+      const errText = await formRes.text();
+      console.error(`Newsletter subscribe failed (${formRes.status}): ${errText.slice(0, 200)}`);
       return NextResponse.json(
         { error: "Failed to subscribe" },
         { status: 500 }
       );
     }
 
+    console.log(`Newsletter subscribe: ${first_name} ${last_name} <${email}>`);
     return NextResponse.json({ success: true });
   } catch (err) {
     console.error("Subscribe error:", err);
