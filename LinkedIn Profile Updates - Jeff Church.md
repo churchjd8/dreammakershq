@@ -25,25 +25,17 @@ Co-Founder of Proda | Former Co-Founder of Suja Juice | Founder of CPG Founders 
 
 **New:**
 
-I've spent 35+ years building, scaling, and selling consumer brands that disrupt categories and make a positive impact in the world. Through eight companies, I've had five home runs and three blazing strikeouts — and I own both equally because I think about all of them.
+With over 35 years of entrepreneurial experience, I am passionate about creating, building, and ultimately selling consumer brands that are market disruptors and that make a positive impact in the world. Through eight companies, I've had five home runs and three blazing strikeouts — and I own both equally because I think about all of them.
 
-One of my proudest business achievements was co-founding Suja Juice — the leading cold-pressed juice brand in the US — and growing it to over $100M in revenue in just five years. I was honored to receive the Ernst & Young Entrepreneur of the Year award and BevNet Person of the Year award for my role in Suja's success. But I also learned what it costs you personally to build something at that pace. That experience changed everything about how I approach business and life today.
+One of my proudest business achievements was co-founding and leading Suja Juice, the leading cold-pressed juice brand in the US, which grew to over $100 million in revenue in just six years. I was honored to receive the Ernst & Young Entrepreneur of the Year award and the BevNet Person of the Year award for my role in Suja's success. But I also learned what it costs you personally to build something at that pace. That experience changed everything about how I approach business and life today.
 
 But of all the things I've built, what I'm proudest of is my marriage of 35 years to Linda and our four amazing kids. That's the real scoreboard.
 
-Woven through it all is a deep desire to share with aspiring entrepreneurs both the wins and the losses — with the hope that my experiences can be others' shortcuts.
-
-Now I'm up to bat for the ninth time with a new brand in the batter's box:
-
-Proda — a high-protein sparkling beverage, now available at Sprouts nationwide.
-
-And I'm pouring everything I've learned into CPG Founders Group — 44 fundraising rounds, $212M raised, and nearly $700M returned to investors, all in one place. Hands-on advisory programs, the MBA for CPG bootcamp, Babu AI (askbabu.ai), and a community of 200+ founders helping each other launch, scale, and exit. The operator's playbook for the next generation of CPG founders.
-
-I also advise and invest in emerging CPG brands including Juni, Oku, and Melting Forest.
+Woven through it all is a compelling desire to share with aspiring entrepreneurs both the successes and losses I've incurred along the way, with the hope that my experiences can be others' shortcuts. Now I'm up to bat for the ninth time with Proda, and I'm pouring everything I've learned into CPG Founders Group — hands-on advisory, AI-powered tools, and a community of 200+ founders helping each other launch, scale, and exit.
 
 Harvard Business School MBA. Former CPA (Ernst & Young). 55+ marathons and ultramarathons. Climbed 6 of 7 summits. Still searching for the next one.
 
-If you're building a CPG brand, I've got resources to help you here: cpgfoundersgroup.com
+cpgfoundersgroup.com
 
 ---
 
@@ -53,7 +45,7 @@ If you're building a CPG brand, I've got resources to help you here: cpgfounders
 
 **New:**
 
-I help CPG founders build, scale, and exit through hands-on advisory and AI-powered tools at CPG Founders Group (cpgfoundersgroup.com).
+I help CPG founders build, scale, and exit through CPG Founders Group (cpgfoundersgroup.com) — the operator's playbook for the next generation of CPG founders. Strategic direction, operating infrastructure, and AI-powered tools built on 35 years and eight companies.
 
 Programs include: 1) The 90-Day Breakthrough — direct advisory for founders ready to break through their biggest bottleneck; 2) MBA for CPG — 15+ hours of training and the full template library from eight companies; 3) Babu AI (askbabu.ai) — a CPG-specific AI advisor with 40+ specialized tools; 4) VIP Days — half-day intensives for high-leverage moments like fundraising, retail expansion, or exit prep.
 
