@@ -156,11 +156,10 @@ export function ResourceModal({
                       className="w-full px-4 py-3 rounded-lg border border-border bg-white focus:outline-none focus:ring-2 focus:ring-accent"
                     >
                       <option value="" disabled>Select one...</option>
-                      <option value="Idea / Pre-launch">Idea / Pre-launch</option>
-                      <option value="Just launched (under $500K)">Just launched (under $500K)</option>
-                      <option value="Growing ($500K - $2M)">Growing ($500K - $2M)</option>
-                      <option value="Scaling ($2M - $10M)">Scaling ($2M - $10M)</option>
-                      <option value="Established ($10M+)">Established ($10M+)</option>
+                      <option value="Idea / Pre-launch (not selling yet)">Idea / Pre-launch (not selling yet)</option>
+                      <option value="Launched (early sales, building consistency)">Launched (early sales, building consistency)</option>
+                      <option value="Growing / Scaling (repeatable growth + traction)">Growing / Scaling (repeatable growth + traction)</option>
+                      <option value="Established (strong sales + team + systems)">Established (strong sales + team + systems)</option>
                     </select>
                   </div>
 

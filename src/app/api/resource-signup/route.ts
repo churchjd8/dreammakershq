@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-const DEFAULT_FORM_ID = process.env.KAJABI_DEFAULT_FORM_ID!;
+const RESOURCES_FORM_ID = "2149549966";
 
 const TAG_IDS: Record<string, string> = {
   "All Free Resources Bundle": "2150128581",
@@ -53,17 +53,22 @@ export async function POST(request: Request) {
       "Content-Type": "application/vnd.api+json",
     };
 
-    // Step 1: Always submit through the default form — this works for new,
-    // existing, and even ghost/deleted contacts in Kajabi
+    // Step 1: Submit through the Free Resources Form — handles new, existing,
+    // and ghost/deleted contacts. Passes stage via custom_3.
     const formRes = await fetch(
-      `https://api.kajabi.com/v1/forms/${DEFAULT_FORM_ID}/submit`,
+      `https://api.kajabi.com/v1/forms/${RESOURCES_FORM_ID}/submit`,
       {
         method: "POST",
         headers,
         body: JSON.stringify({
           data: {
             type: "form_submissions",
-            attributes: { name: first, email, custom_1: last },
+            attributes: {
+              name: first,
+              email,
+              custom_1: last,
+              custom_3: stage || "",
+            },
           },
         }),
       }
@@ -90,7 +95,14 @@ export async function POST(request: Request) {
       body: JSON.stringify({
         data: {
           type: "contacts",
-          attributes: { name: first, custom_1: last, email, subscribed: true },
+          attributes: {
+            name: first,
+            custom_1: last,
+            custom_3: stage || "",
+            custom_4: challenge || "",
+            email,
+            subscribed: true,
+          },
           relationships: {
             site: {
               data: { type: "sites", id: process.env.KAJABI_SITE_ID! },
@@ -119,6 +131,22 @@ export async function POST(request: Request) {
         if (match) {
           contactId = match.id;
           console.log(`Resource signup: found existing contact ${contactId}`);
+
+          // Update the existing contact's custom fields
+          await fetch(`https://api.kajabi.com/v1/contacts/${contactId}`, {
+            method: "PATCH",
+            headers,
+            body: JSON.stringify({
+              data: {
+                type: "contacts",
+                id: contactId,
+                attributes: {
+                  custom_3: stage || "",
+                  custom_4: challenge || "",
+                },
+              },
+            }),
+          });
         }
       }
     }
