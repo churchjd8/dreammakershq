@@ -25,19 +25,23 @@ Co-Founder of Proda | Former Co-Founder of Suja Juice | Founder of CPG Founders 
 
 **New:**
 
-I've spent 35+ years building, scaling, and exiting consumer brands. Co-founded Suja Juice — the leading cold-pressed juice brand in the US — and grew it to over $100M in revenue in just five years. Across eight companies, I've raised $212M, completed 44 fundraising rounds, and returned nearly $700M to investors. Five home runs and three blazing strikeouts. I own both equally.
+I'm a startup junkie. Over 35 years, eight companies, and more sleepless nights than I can count — I've been building, scaling, and selling consumer brands that disrupt categories and make a positive impact in the world. Five home runs. Three blazing strikeouts. I own both equally, and I think about all of them.
+
+One of my proudest achievements was co-founding Suja Juice — the leading cold-pressed juice brand in the US — and growing it to over $100M in revenue in just five years. I was honored to receive the Ernst & Young Entrepreneur of the Year award and BevNet Person of the Year award for my role in Suja's success. But I also learned what it costs you personally to build something at that pace. That experience changed everything about how I approach business and life today.
+
+Woven through it all is a deep desire to share with aspiring entrepreneurs both the wins and the losses — with the hope that my experiences can be others' shortcuts.
 
 Today I'm building two things:
 
-Proda — a high-protein sparkling beverage, now available at Sprouts nationwide.
+Proda — a high-protein sparkling beverage, now available at Sprouts nationwide. I can't help myself. I'm still chasing lightning in a bottle.
 
-CPG Founders Group — the operator's playbook for the next generation of CPG founders. Strategic direction, operating infrastructure, and AI-powered tools (askbabu.ai) to help founders scale, raise, and exit. Hands-on coaching programs and a community of 200+ founders. Everything I've learned, in one place.
+CPG Founders Group — everything I've learned from 8 companies, $212M raised, 44 fundraising rounds, and nearly $700M returned to investors — in one place. Hands-on advisory programs, the MBA for CPG bootcamp, Babu AI (askbabu.ai), and a community of 200+ founders helping each other launch, scale, and exit. The operator's playbook for the next generation of CPG founders.
 
 I also advise and invest in emerging CPG brands including Juni, Oku, and Melting Forest.
 
-Harvard Business School MBA. Former CPA (Ernst & Young). Ernst & Young Entrepreneur of the Year. Bevchek Person of the Year. 55+ marathons and ultramarathons. Climbed 6 of 7 summits. Still searching for the next one.
+Harvard Business School MBA. Former CPA (Ernst & Young). 55+ marathons and ultramarathons. Climbed 6 of 7 summits. Still searching for the next one.
 
-If you're building a CPG brand, I've got great resources to help you here: cpgfoundersgroup.com
+If you're building a CPG brand, I've got resources to help you here: cpgfoundersgroup.com
 
 ---
 
