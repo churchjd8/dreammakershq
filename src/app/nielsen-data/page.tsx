@@ -197,7 +197,7 @@ export default function NielsenDataPage() {
               Reserve your spot &mdash; $1,500 &rarr;
             </a>
             <a
-              href="mailto:info@cpgfoundersgroup.com"
+              href="mailto:info@teamchurch.co"
               className="inline-flex items-center justify-center px-8 py-4 border border-white/30 hover:border-white/60 text-white font-semibold rounded-lg transition-colors text-lg"
             >
               Questions? Email us
