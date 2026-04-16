@@ -13,10 +13,12 @@ export function ResourceModal({
 }) {
   const [open, setOpen] = useState(false);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorDetail, setErrorDetail] = useState("");
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setStatus("loading");
+    setErrorDetail("");
 
     const form = e.currentTarget;
     const data = Object.fromEntries(new FormData(form));
@@ -31,9 +33,12 @@ export function ResourceModal({
       if (res.ok) {
         setStatus("success");
       } else {
+        const err = await res.json().catch(() => ({}));
+        setErrorDetail(err.error || `Error ${res.status}`);
         setStatus("error");
       }
     } catch {
+      setErrorDetail("Network error");
       setStatus("error");
     }
   }
@@ -191,7 +196,7 @@ export function ResourceModal({
 
                   {status === "error" && (
                     <p className="text-sm text-red-500 text-center">
-                      Something went wrong. Please try again.
+                      Something went wrong. Please try again.{errorDetail && ` (${errorDetail})`}
                     </p>
                   )}
                 </form>

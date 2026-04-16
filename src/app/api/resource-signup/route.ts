@@ -22,14 +22,18 @@ async function getKajabiToken() {
     }),
   });
 
-  if (!res.ok) throw new Error("Failed to authenticate with Kajabi");
+  if (!res.ok) {
+    const text = await res.text();
+    throw new Error(`Kajabi auth failed (${res.status}): ${text}`);
+  }
   const data = await res.json();
   return data.access_token as string;
 }
 
 export async function POST(request: Request) {
   try {
-    const { firstName, lastName, name, email, resource, stage, challenge } = await request.json();
+    const body = await request.json();
+    const { firstName, lastName, name, email, resource, stage, challenge } = body;
 
     // Support both new (firstName/lastName) and legacy (name) formats
     const first = firstName || name || "";
@@ -37,11 +41,14 @@ export async function POST(request: Request) {
     const fullName = last ? `${first} ${last}` : first;
 
     if (!first || !email || !resource) {
+      console.error("Resource signup: missing fields", { first, email, resource });
       return NextResponse.json(
         { error: "All fields are required" },
         { status: 400 }
       );
     }
+
+    console.log(`Resource signup: ${fullName} <${email}> requesting "${resource}"`);
 
     const accessToken = await getKajabiToken();
     const headers = {
@@ -49,7 +56,9 @@ export async function POST(request: Request) {
       "Content-Type": "application/vnd.api+json",
     };
 
-    // Create contact in Kajabi — name field = first name, custom_1 = last name
+    let contactId: string | null = null;
+
+    // Step 1: Try to create contact
     const contactRes = await fetch("https://api.kajabi.com/v1/contacts", {
       method: "POST",
       headers,
@@ -66,13 +75,15 @@ export async function POST(request: Request) {
       }),
     });
 
-    let contactId: string | null = null;
-
     if (contactRes.ok) {
       const contactData = await contactRes.json();
       contactId = contactData.data.id;
+      console.log(`Resource signup: created new contact ${contactId}`);
     } else {
-      // Contact may already exist
+      const errText = await contactRes.text();
+      console.log(`Resource signup: contact create returned ${contactRes.status} — ${errText.slice(0, 200)}`);
+
+      // Step 2: Contact likely exists — search by email
       const searchRes = await fetch(
         `https://api.kajabi.com/v1/contacts?filter[email_contains]=${encodeURIComponent(email)}`,
         { headers }
@@ -85,44 +96,65 @@ export async function POST(request: Request) {
         );
         if (match) {
           contactId = match.id;
+          console.log(`Resource signup: found existing contact ${contactId}`);
+        } else {
+          console.error(`Resource signup: email search returned ${searchData.data?.length ?? 0} results but no exact match for ${email}`);
         }
+      } else {
+        console.error(`Resource signup: email search failed (${searchRes.status})`);
       }
     }
 
-    if (contactId) {
-      // Apply the matching Kajabi tag
-      const tagId = TAG_IDS[resource];
-      if (tagId) {
-        await fetch(
-          `https://api.kajabi.com/v1/contacts/${contactId}/relationships/tags`,
-          {
-            method: "POST",
-            headers,
-            body: JSON.stringify({
-              data: [{ type: "contact_tags", id: tagId }],
-            }),
-          }
-        );
-      }
+    if (!contactId) {
+      console.error(`Resource signup: FAILED — could not create or find contact for ${email}`);
+      return NextResponse.json(
+        { error: "Could not create contact" },
+        { status: 500 }
+      );
+    }
 
-      // Add a note with resource request details
-      await fetch("https://api.kajabi.com/v1/contact_notes", {
-        method: "POST",
-        headers,
-        body: JSON.stringify({
-          data: {
-            type: "contact_notes",
-            attributes: {
-              body: `Free resource request from cpgfoundersgroup.com/resources\n\nName: ${fullName}\nResource: ${resource}\nBusiness Stage: ${stage || "Not provided"}\nBiggest Challenge: ${challenge || "Not provided"}`,
-            },
-            relationships: {
-              contact: {
-                data: { type: "contacts", id: contactId },
-              },
+    // Step 3: Apply tag
+    const tagId = TAG_IDS[resource];
+    if (tagId) {
+      const tagRes = await fetch(
+        `https://api.kajabi.com/v1/contacts/${contactId}/relationships/tags`,
+        {
+          method: "POST",
+          headers,
+          body: JSON.stringify({
+            data: [{ type: "contact_tags", id: tagId }],
+          }),
+        }
+      );
+      if (!tagRes.ok) {
+        console.error(`Resource signup: tag apply failed (${tagRes.status}) for contact ${contactId}`);
+      } else {
+        console.log(`Resource signup: applied tag ${tagId} (${resource}) to contact ${contactId}`);
+      }
+    } else {
+      console.error(`Resource signup: no tag ID found for resource "${resource}"`);
+    }
+
+    // Step 4: Add note
+    const noteRes = await fetch("https://api.kajabi.com/v1/contact_notes", {
+      method: "POST",
+      headers,
+      body: JSON.stringify({
+        data: {
+          type: "contact_notes",
+          attributes: {
+            body: `Free resource request from cpgfoundersgroup.com/resources\n\nName: ${fullName}\nResource: ${resource}\nBusiness Stage: ${stage || "Not provided"}\nBiggest Challenge: ${challenge || "Not provided"}`,
+          },
+          relationships: {
+            contact: {
+              data: { type: "contacts", id: contactId },
             },
           },
-        }),
-      });
+        },
+      }),
+    });
+    if (!noteRes.ok) {
+      console.error(`Resource signup: note creation failed (${noteRes.status})`);
     }
 
     return NextResponse.json({ success: true });
