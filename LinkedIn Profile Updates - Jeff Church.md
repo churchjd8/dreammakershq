@@ -55,6 +55,22 @@ cpgfoundersgroup.com
 
 ---
 
+## CPG FOUNDERS GROUP — BUSINESS PAGE OVERVIEW
+
+**Tagline:** The operator's playbook for the next generation of CPG founders.
+
+**Overview:**
+
+CPG Founders Group is the operator's playbook for the next generation of CPG founders. Strategic direction, operating infrastructure, and AI-powered tools — built on 35 years, eight companies, $212M raised, and nearly $700M returned to investors.
+
+Founded by Jeff Church, co-founder of Suja Juice and serial CPG entrepreneur, everything here was paid for in equity, dilution, and sleepless nights. Five home runs. Three blazing strikeouts. Every lesson learned, in one place.
+
+Programs include the 90-Day Breakthrough (direct advisory), MBA for CPG (15+ hours of training and the full template library from eight companies), Babu AI at askbabu.ai (a CPG-specific AI advisor with 40+ specialized tools), VIP Days, and a free community of 200+ founders helping each other launch, scale, and exit.
+
+cpgfoundersgroup.com
+
+---
+
 ## EXPERIENCE — REMOVE THESE
 
 ### 1. Dream Makers — "Founder, Accelerators & Bootcamps"
