@@ -6,10 +6,12 @@ export function ResourceModal({
   resourceName,
   buttonLabel,
   buttonClass,
+  redirectTo,
 }: {
   resourceName: string;
   buttonLabel: string;
   buttonClass?: string;
+  redirectTo?: string;
 }) {
   const [open, setOpen] = useState(false);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
@@ -31,6 +33,10 @@ export function ResourceModal({
       });
 
       if (res.ok) {
+        if (redirectTo) {
+          window.location.href = redirectTo;
+          return;
+        }
         setStatus("success");
       } else {
         const err = await res.json().catch(() => ({}));

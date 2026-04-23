@@ -51,6 +51,14 @@ const whitePapers = [
   },
 ];
 
+const workshopTools = [
+  "Pricing Calculator",
+  "Trade Promo Break-Even Calculator",
+  "SKU Rationalization Tool",
+  "Cash Conversion Cycle Tool",
+  "Cash Runway Calculator",
+];
+
 export default function ResourcesPage() {
   const posts = getAllPosts();
   const featuredPost = posts.find((p) => p.featured);
@@ -97,43 +105,77 @@ export default function ResourcesPage() {
         </div>
       </section>
 
-      {/* ========== FEATURED: FUNDRAISING WEBINAR ========== */}
+      {/* ========== FEATURED TRAININGS ========== */}
       <section className="py-16 md:py-24 bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="bg-card-flagship rounded-xl border border-accent/30 ring-2 ring-accent/20 p-6 sm:p-8 md:p-10">
-            <div className="grid lg:grid-cols-2 gap-8 items-center">
-              <div>
-                <span className="inline-block px-3 py-1 text-xs font-bold uppercase tracking-wider bg-accent text-white rounded-full mb-4">
-                  Featured Training
-                </span>
-                <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
-                  Fundraising Masterclass with Jeff Church
-                </h2>
-                <p className="mt-4 text-muted leading-relaxed">
-                  3 hours of deep-dive training on everything you need to know about raising capital
-                  for your CPG brand. Valuations, pitch decks, investor targeting, dilution math,
-                  SAFEs vs equity, and the exact frameworks Jeff used to raise $275M+ across 40+
-                  rounds.
-                </p>
-                <p className="mt-2 text-sm text-muted">
-                  Includes the CPG Chart of Accounts, Capital Raise Calculator, and Unit Pricing
-                  Model.
-                </p>
-                <div className="mt-6">
-                  <ResourceModal
-                    resourceName="Fundraising Masterclass Replay (3 Hours)"
-                    buttonLabel="Get the replay &rarr;"
-                  />
-                </div>
+          <div className="max-w-3xl mb-12">
+            <span className="inline-block px-3 py-1 text-xs font-bold uppercase tracking-wider text-accent mb-4">
+              Featured Trainings
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
+              Live workshop replays with Jeff
+            </h2>
+            <p className="mt-4 text-lg text-muted">
+              Hours of deep-dive training on fundraising, profitability, and the frameworks Jeff
+              used to build and scale CPG brands.
+            </p>
+          </div>
+
+          <div className="grid gap-8 lg:grid-cols-2">
+            {/* Reducing the Burn Workshop */}
+            <div className="bg-card-flagship rounded-xl border border-accent/30 ring-2 ring-accent/20 p-6 sm:p-8 flex flex-col">
+              <span className="inline-block px-3 py-1 text-xs font-bold uppercase tracking-wider bg-accent text-white rounded-full mb-4 self-start">
+                New
+              </span>
+              <h3 className="text-2xl font-bold tracking-tight">
+                Reducing the Burn: CPG Profitability Workshop
+              </h3>
+              <p className="mt-4 text-muted leading-relaxed">
+                90 minutes on reducing your burn rate and getting to profitability faster.
+                Pricing strategy, trade spend management, SKU rationalization, cash conversion,
+                and runway planning.
+              </p>
+              <div className="mt-4">
+                <p className="text-sm font-semibold mb-2">Includes 5 free tools:</p>
+                <ul className="text-sm text-muted space-y-1">
+                  {workshopTools.map((tool) => (
+                    <li key={tool} className="flex items-start gap-2">
+                      <span className="text-accent mt-0.5">&#10003;</span>
+                      {tool}
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <div className="relative aspect-video rounded-xl overflow-hidden bg-foreground/5 border border-border">
-                <div className="flex items-center justify-center h-full text-muted text-sm">
-                  <div className="text-center">
-                    <p className="text-4xl mb-2">🎬</p>
-                    <p className="font-semibold">3-Hour Video Replay</p>
-                    <p className="text-xs mt-1">Sign up to get instant access</p>
-                  </div>
-                </div>
+              <div className="mt-6 pt-4 border-t border-border mt-auto">
+                <ResourceModal
+                  resourceName="Reducing the Burn Workshop Replay + Tools"
+                  buttonLabel="Watch the replay + get all 5 tools &rarr;"
+                  redirectTo="/burn-rate-workshop-replay"
+                />
+              </div>
+            </div>
+
+            {/* Fundraising Masterclass */}
+            <div className="bg-card rounded-xl border border-border p-6 sm:p-8 flex flex-col">
+              <h3 className="text-2xl font-bold tracking-tight">
+                Fundraising Masterclass with Jeff Church
+              </h3>
+              <p className="mt-4 text-muted leading-relaxed">
+                3 hours of deep-dive training on everything you need to know about raising capital
+                for your CPG brand. Valuations, pitch decks, investor targeting, dilution math,
+                SAFEs vs equity, and the exact frameworks Jeff used to raise $275M+ across 40+
+                rounds.
+              </p>
+              <p className="mt-2 text-sm text-muted">
+                Includes the CPG Chart of Accounts, Capital Raise Calculator, and Unit Pricing
+                Model.
+              </p>
+              <div className="mt-6 pt-4 border-t border-border mt-auto">
+                <ResourceModal
+                  resourceName="Fundraising Masterclass Replay (3 Hours)"
+                  buttonLabel="Watch the 3-hour replay &rarr;"
+                  redirectTo="/fundraising-masterclass"
+                />
               </div>
             </div>
           </div>
@@ -239,49 +281,6 @@ export default function ResourcesPage() {
                   <p className="text-5xl mb-3">🎯</p>
                   <p className="text-3xl font-bold text-accent">23 Plays</p>
                   <p className="text-muted mt-1">The complete operating system</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ========== UPCOMING: PROFITABILITY WORKSHOP ========== */}
-      <section className="py-16 md:py-24 bg-white">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <div className="bg-foreground rounded-xl p-6 sm:p-8 md:p-10 text-white">
-            <div className="grid md:grid-cols-2 gap-8 items-center">
-              <div>
-                <span className="inline-block px-3 py-1 text-xs font-bold uppercase tracking-wider bg-accent text-white rounded-full mb-4">
-                  Upcoming Workshop
-                </span>
-                <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
-                  CPG Profitability Workshop
-                </h2>
-                <p className="mt-4 text-white/70 leading-relaxed">
-                  Reduce your burn and get to profitability faster. 90 minutes of live training with
-                  Jeff on the exact frameworks CPG founders use to extend their runway. Free.
-                </p>
-                <p className="mt-2 text-white/50 text-sm">
-                  April 23rd - 90 Minutes - Live on Zoom
-                </p>
-                <p className="mt-1 text-white/40 text-xs italic">
-                  Replay will be available here after the live event.
-                </p>
-                <div className="mt-6">
-                  <Link
-                    href="/burn-rate-workshop"
-                    className="inline-flex items-center justify-center px-6 py-3 bg-accent hover:bg-accent-dark text-white font-semibold rounded-lg transition-colors"
-                  >
-                    Reserve your spot &rarr;
-                  </Link>
-                </div>
-              </div>
-              <div className="text-center">
-                <div className="bg-white/5 rounded-xl p-8">
-                  <p className="text-5xl mb-3">🔥</p>
-                  <p className="text-2xl font-bold">April 23rd</p>
-                  <p className="text-white/50 mt-1">Free - Live on Zoom</p>
                 </div>
               </div>
             </div>
@@ -401,21 +400,32 @@ export default function ResourcesPage() {
         </div>
       </section>
 
-      {/* Bottom CTA */}
-      <section className="py-16 md:py-24 bg-dark">
+      {/* ========== 90-DAY BREAKTHROUGH CTA ========== */}
+      <section className="py-16 md:py-24 bg-foreground text-white">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center">
+          <span className="inline-block px-3 py-1 text-xs font-bold uppercase tracking-wider bg-accent text-white rounded-full mb-6">
+            Go Deeper
+          </span>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
-            Ready to unlock everything CPG Founders Group has to offer?
+            Ready to work through it with Jeff?
           </h2>
-          <p className="mt-4 text-lg text-white/70">
-            Explore our programs and ways to work with Jeff.
+          <p className="mt-6 text-lg text-white/70 max-w-2xl mx-auto leading-relaxed">
+            The 90-Day Breakthrough is where Jeff works directly with founders to break through
+            whatever&rsquo;s blocking the next stage. Onboarding diagnostic, 3x/month group sessions,
+            weekly accountability calls, email access to Jeff, and the full toolkit.
           </p>
-          <div className="mt-8">
+          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
-              href="/#programs"
+              href="/90-day-breakthrough-apply"
               className="inline-flex items-center justify-center px-8 py-4 bg-accent hover:bg-accent-dark text-white font-semibold rounded-lg transition-colors text-lg"
             >
-              View programs &rarr;
+              Apply for the 90-Day Breakthrough &rarr;
+            </Link>
+            <Link
+              href="/#programs"
+              className="inline-flex items-center justify-center px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-lg transition-colors text-lg"
+            >
+              See all programs
             </Link>
           </div>
         </div>

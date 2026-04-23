@@ -9,6 +9,7 @@ const FORM_IDS: Record<string, string> = {
   "Suja Lessons Learned (white paper)": "2149549977",
   "CPG Fatal Flaws (white paper)": "2149549979",
   "CPG Playbook Video Replay": "2149549982",
+  "Reducing the Burn Workshop Replay + Tools": "2149524450",
 };
 
 async function getKajabiToken() {
