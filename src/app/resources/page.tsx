@@ -10,30 +10,6 @@ export const metadata: Metadata = {
     "Free tools, templates, video training, and white papers from Jeff Church. Everything you need to launch and scale your CPG brand.",
 };
 
-const tools = [
-  {
-    icon: "📊",
-    title: "CPG Chart of Accounts",
-    description:
-      "The CPG-specific chart of accounts template that sets up your financials correctly from day one. Get freight, trade spend, and slotting in the right places.",
-    tag: "CPG Chart of Accounts",
-  },
-  {
-    icon: "💰",
-    title: "Capital Raise & Runway Calculator",
-    description:
-      "Model your burn rate, calculate your exact runway, and plan your next raise. Know exactly when you need to start fundraising.",
-    tag: "Capital Raise & Runway Calculator",
-  },
-  {
-    icon: "📈",
-    title: "Unit Pricing & Break-Even Model",
-    description:
-      "Model your unit economics, find your break-even point, and test different pricing scenarios before you commit.",
-    tag: "Unit Pricing & Break-Even Model",
-  },
-];
-
 const whitePapers = [
   {
     icon: "📄",
@@ -166,55 +142,31 @@ export default function ResourcesPage() {
                 SAFEs vs equity, and the exact frameworks Jeff used to raise $275M+ across 40+
                 rounds.
               </p>
-              <p className="mt-2 text-sm text-muted">
-                Includes the CPG Chart of Accounts, Capital Raise Calculator, and Unit Pricing
-                Model.
-              </p>
+              <div className="mt-4">
+                <p className="text-sm font-semibold mb-2">Includes 3 free tools:</p>
+                <ul className="text-sm text-muted space-y-1">
+                  <li className="flex items-start gap-2">
+                    <span className="text-accent mt-0.5">&#10003;</span>
+                    CPG Chart of Accounts
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-accent mt-0.5">&#10003;</span>
+                    Capital Raise &amp; Runway Calculator
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-accent mt-0.5">&#10003;</span>
+                    Unit Pricing &amp; Break-Even Model
+                  </li>
+                </ul>
+              </div>
               <div className="mt-6 pt-4 border-t border-border mt-auto">
                 <ResourceModal
                   resourceName="Fundraising Masterclass Replay (3 Hours)"
-                  buttonLabel="Watch the 3-hour replay &rarr;"
+                  buttonLabel="Watch the 3-hour replay + get all 3 tools &rarr;"
                   redirectTo="/fundraising-masterclass"
                 />
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ========== FREE TOOLS ========== */}
-      <section className="py-16 md:py-24 bg-background">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mb-12">
-            <span className="inline-block px-3 py-1 text-xs font-bold uppercase tracking-wider text-accent mb-4">
-              Tools & Templates
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
-              Free tools to run your business
-            </h2>
-            <p className="mt-4 text-lg text-muted">
-              The same financial models and templates Jeff uses with his portfolio brands. Yours for
-              free.
-            </p>
-          </div>
-
-          <div className="grid gap-6 md:grid-cols-3">
-            {tools.map((tool) => (
-              <div
-                key={tool.title}
-                className="bg-card rounded-xl border border-border p-6 flex flex-col"
-              >
-                <p className="text-3xl mb-3">{tool.icon}</p>
-                <h3 className="text-lg font-bold mb-2">{tool.title}</h3>
-                <p className="text-sm text-muted leading-relaxed flex-1">{tool.description}</p>
-                <div className="mt-5 pt-4 border-t border-border">
-                  <ResourceModal
-                    resourceName={tool.tag}
-                    buttonLabel="Get this tool &rarr;"
-                  />
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </section>
