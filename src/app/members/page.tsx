@@ -22,7 +22,7 @@ const cards = [
     title: "Events Calendar",
     description:
       "View upcoming group calls, workshops, masterclasses, and community events.",
-    href: "https://calendar.google.com/calendar/u/0?cid=am9zaHVhQHRlYW1jaHVyY2guY28",
+    href: "https://calendar.google.com/calendar/u/0?cid=Y18yYTMyMDc0YmRjM2IzYjVkZDJiNTA5OTZiM2Y4MWRkYTQ5YzQ3MzU3ZjgwZGE1ZGI0NWRmMzk1NWI2ZGI2NjRmQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20",
     linkLabel: "View calendar",
     external: true,
   },
@@ -110,6 +110,32 @@ export default function MembersPage() {
                 </div>
               </Link>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ========== CALENDAR EMBED ========== */}
+      <section className="py-16 md:py-24 bg-background">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mb-12">
+            <span className="inline-block px-3 py-1 text-xs font-bold uppercase tracking-wider text-accent mb-4">
+              Upcoming Events
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
+              Community Calendar
+            </h2>
+            <p className="mt-4 text-lg text-muted">
+              Group calls, workshops, masterclasses, and community events — all
+              in one place.
+            </p>
+          </div>
+          <div className="bg-card rounded-xl border border-border overflow-hidden">
+            <iframe
+              src="https://calendar.google.com/calendar/embed?src=c_2a32074bdc3b3b5dd2b50996b3f81dda49c47357f80da5db45df3955b6db664f%40group.calendar.google.com&ctz=America%2FLos_Angeles&showTitle=0&showNav=1&showPrint=0&showTabs=1&showCalendars=0"
+              className="w-full border-0"
+              height="600"
+              title="CPG Founders Group Events Calendar"
+            />
           </div>
         </div>
       </section>
