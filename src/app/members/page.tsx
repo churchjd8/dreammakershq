@@ -31,9 +31,9 @@ const cards = [
     title: "MBA for CPG",
     description:
       "Access your self-paced course materials and training modules. 23 plays from Jeff's CPG Playbook.",
-    href: "/mba-for-cpg",
+    href: "https://learn.cpgfoundersgroup.com/login",
     linkLabel: "Go to course",
-    external: false,
+    external: true,
   },
   {
     emoji: "💬",
@@ -52,15 +52,6 @@ const cards = [
     href: "https://www.dropbox.com/scl/fi/rhld0wnh9ovkedwkwtusa/Office-Hours-and-Speakers.docx?rlkey=ijb38ugkggg4shqy6cshp89na&dl=0",
     linkLabel: "Watch replays",
     external: true,
-  },
-  {
-    emoji: "📚",
-    title: "Resource Library",
-    description:
-      "Templates, calculators, white papers, and tools to help you scale your CPG brand.",
-    href: "/resources",
-    linkLabel: "Browse resources",
-    external: false,
   },
 ];
 
