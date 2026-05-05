@@ -2,45 +2,37 @@
 
 MCP server that gives Claude access to Jeff's voice profile, stories, contacts, and CPG Founders Group content.
 
-## Setup
+## Live URL
 
-### 1. Install dependencies
-
-```bash
-cd mcp-server
-npm install
+```
+https://mcp-server-mauve-eight.vercel.app/sse
 ```
 
-### 2. Add to Claude Code
+## How Jeff Connects
 
-Add this to your `~/.claude/claude_desktop_config.json` (for Claude Desktop) or your Claude Code settings:
+In Claude Desktop, go to **Settings → MCP Servers** and add:
 
-**For Claude Desktop:**
 ```json
 {
   "mcpServers": {
     "jeff-church": {
-      "command": "node",
-      "args": ["/path/to/mcp-server/index.js"]
+      "url": "https://mcp-server-mauve-eight.vercel.app/sse"
     }
   }
 }
 ```
 
-**For Claude Code (CLI):**
-Add to `.claude/settings.json` in your project:
+Or for Claude Code CLI, add to `.claude/settings.json`:
+
 ```json
 {
   "mcpServers": {
     "jeff-church": {
-      "command": "node",
-      "args": ["/path/to/mcp-server/index.js"]
+      "url": "https://mcp-server-mauve-eight.vercel.app/sse"
     }
   }
 }
 ```
-
-Replace `/path/to/mcp-server/` with the actual absolute path to this directory.
 
 ## What's Included
 
@@ -72,3 +64,13 @@ Once connected, Claude can:
 - "Look up Morgan Mayer" → returns contact details and status
 - "How much is the 90-Day Breakthrough?" → returns full pricing and inclusions
 - "Write an email to a founder who applied for the 90-Day" → uses email template + voice
+
+## Development
+
+```bash
+cd mcp-server
+npm install
+npm start
+```
+
+Runs locally on port 3001.
