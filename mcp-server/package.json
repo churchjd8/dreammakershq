@@ -1,0 +1,16 @@
+{
+  "name": "jeff-church-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for Jeff Church's voice profile, stories, and CPG Founders Group content",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "CPG Founders Group",
+  "license": "ISC",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0"
+  }
+}
