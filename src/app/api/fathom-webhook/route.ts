@@ -4,8 +4,8 @@ import { generateRecap, recapToHtml, type FathomMeeting } from "@/lib/fathom-rec
 import { buildRecapDocx, docxFilename } from "@/lib/recap-docx";
 import { uploadDocxToDropbox } from "@/lib/dropbox";
 
-// Recap generation (Claude) + docx + Dropbox + email can run 15-30s.
-// Vercel Hobby caps at 10s — this requires Pro (60s).
+// Recap generation (Claude) + docx + Dropbox + email typically run 7-15s.
+// 60s ceiling works on Vercel Hobby (as of 2026) and Pro alike.
 export const maxDuration = 60;
 export const dynamic = "force-dynamic";
 

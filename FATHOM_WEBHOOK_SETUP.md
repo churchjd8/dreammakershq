@@ -28,11 +28,12 @@ Dependencies added: `@anthropic-ai/sdk`, `docx`.
 
 ## Step 1 — Vercel plan check
 
-Recap generation can run 15-30 seconds. The route sets `maxDuration = 60`,
-which **requires Vercel Pro or higher** (Hobby caps function duration at 10s).
+Recap generation typically runs 7-15s. The route sets `maxDuration = 60`,
+which Vercel Hobby supports as of 2026 (was 10s historically — they bumped it).
+Fluid Compute (default on new projects) extends Hobby to 300s.
 
-If Jeff's site is on Hobby, upgrade before deploying — otherwise Fathom will
-get timeouts and retry-storm us.
+**No upgrade required.** Verify the project has Fluid Compute on (Project →
+Settings → Functions) just so we have headroom on long transcripts.
 
 ---
 
