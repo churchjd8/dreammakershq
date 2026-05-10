@@ -17,13 +17,15 @@ export type Recap = {
   next_steps: string;
 };
 
-export type FathomMeeting = {
+// Source-agnostic meeting payload. Built from Fireflies; could be filled from
+// Fathom, Otter, or anything else.
+export type MeetingPayload = {
   title: string;
   url: string;
   recording_id: number | string;
   start_time: string;
   end_time: string;
-  attendees: { name: string; email?: string; is_external?: boolean }[];
+  attendees: { name: string; email?: string }[];
   summary?: string;
   transcript?: string;
   action_items?: string;
@@ -33,9 +35,9 @@ const MODEL = "claude-sonnet-4-6";
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
-export async function generateRecap(meeting: FathomMeeting): Promise<Recap> {
+export async function generateRecap(meeting: MeetingPayload): Promise<Recap> {
   const attendeeList = meeting.attendees
-    .map((a) => `${a.name}${a.email ? ` <${a.email}>` : ""}${a.is_external ? " (external)" : ""}`)
+    .map((a) => `${a.name}${a.email ? ` <${a.email}>` : ""}`)
     .join(", ");
 
   const userBlock = [
@@ -44,8 +46,8 @@ export async function generateRecap(meeting: FathomMeeting): Promise<Recap> {
     `ATTENDEES: ${attendeeList}`,
     `RECORDING URL: ${meeting.url}`,
     "",
-    meeting.summary ? `--- FATHOM SUMMARY ---\n${meeting.summary}\n` : "",
-    meeting.action_items ? `--- FATHOM ACTION ITEMS ---\n${meeting.action_items}\n` : "",
+    meeting.summary ? `--- SUMMARY ---\n${meeting.summary}\n` : "",
+    meeting.action_items ? `--- ACTION ITEMS (from recorder) ---\n${meeting.action_items}\n` : "",
     meeting.transcript ? `--- TRANSCRIPT ---\n${meeting.transcript}` : "",
   ]
     .filter(Boolean)
@@ -73,7 +75,6 @@ export async function generateRecap(meeting: FathomMeeting): Promise<Recap> {
 }
 
 function parseRecapJson(raw: string): Recap {
-  // Models occasionally wrap JSON in fences; strip if present.
   const cleaned = raw
     .replace(/^\s*```(?:json)?\s*/i, "")
     .replace(/\s*```\s*$/i, "")
@@ -108,7 +109,7 @@ function parseRecapJson(raw: string): Recap {
   };
 }
 
-export function recapToHtml(recap: Recap, meeting: FathomMeeting): string {
+export function recapToHtml(recap: Recap, meeting: MeetingPayload): string {
   const safe = (s: string) =>
     s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
   const li = (items: string[]) => items.map((x) => `<li>${safe(x)}</li>`).join("");
@@ -162,7 +163,7 @@ export function recapToHtml(recap: Recap, meeting: FathomMeeting): string {
   <p style="margin-top:20px"><strong>Next steps:</strong> ${safe(recap.next_steps)}</p>
 
   <p style="margin-top:24px;padding-top:16px;border-top:1px solid #eee;font-size:13px;color:#666">
-    <a href="${safe(meeting.url)}" style="color:#0066cc">Open recording in Fathom</a> &nbsp;·&nbsp;
+    ${meeting.url ? `<a href="${safe(meeting.url)}" style="color:#0066cc">Open recording</a> &nbsp;·&nbsp;` : ""}
     Full notes attached as Word doc in Dropbox.
   </p>
 </div>`.trim();

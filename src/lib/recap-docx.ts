@@ -6,7 +6,7 @@ import {
   TextRun,
   AlignmentType,
 } from "docx";
-import type { Recap, FathomMeeting } from "./fathom-recap";
+import type { Recap, MeetingPayload } from "./meeting-recap";
 
 const FONT = "Calibri";
 
@@ -37,15 +37,13 @@ const numbered = (text: string) =>
     spacing: { after: 80 },
   });
 
-export async function buildRecapDocx(recap: Recap, meeting: FathomMeeting): Promise<Buffer> {
+export async function buildRecapDocx(recap: Recap, meeting: MeetingPayload): Promise<Buffer> {
   const date = new Date(meeting.start_time).toLocaleString("en-US", {
     timeZone: "America/Los_Angeles",
     dateStyle: "long",
     timeStyle: "short",
   });
-  const attendees = meeting.attendees
-    .map((a) => `${a.name}${a.is_external ? " (external)" : ""}`)
-    .join(", ");
+  const attendees = meeting.attendees.map((a) => a.name).join(", ");
 
   const sections: Paragraph[] = [];
 
@@ -142,7 +140,7 @@ export async function buildRecapDocx(recap: Recap, meeting: FathomMeeting): Prom
   return Packer.toBuffer(doc) as Promise<Buffer>;
 }
 
-export function docxFilename(meeting: FathomMeeting): string {
+export function docxFilename(meeting: MeetingPayload): string {
   const d = new Date(meeting.start_time);
   const yyyy = d.getFullYear();
   const mm = String(d.getMonth() + 1).padStart(2, "0");
