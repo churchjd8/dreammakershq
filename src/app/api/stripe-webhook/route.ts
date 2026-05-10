@@ -51,7 +51,7 @@ export async function POST(request: Request) {
     try {
       await resend.emails.send({
         from: "CPG Founders Group <onboarding@resend.dev>",
-        to: "info@teamchurch.co",
+        to: process.env.STRIPE_FAILURE_NOTIFY_EMAIL!,
         subject: `Failed Payment - ${customerName} (${amount})`,
         html: `
           <h2>Failed Payment Alert</h2>
