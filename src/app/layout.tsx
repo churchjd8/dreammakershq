@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
@@ -39,6 +40,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cfBeaconToken = process.env.NEXT_PUBLIC_CF_BEACON_TOKEN;
+
   return (
     <html
       lang="en"
@@ -48,6 +51,14 @@ export default function RootLayout({
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        {cfBeaconToken ? (
+          <Script
+            id="cf-web-analytics"
+            src="https://static.cloudflareinsights.com/beacon.min.js"
+            data-cf-beacon={JSON.stringify({ token: cfBeaconToken })}
+            strategy="afterInteractive"
+          />
+        ) : null}
       </body>
     </html>
   );
